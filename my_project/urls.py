@@ -18,8 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from project_4_medication_tracker import views as project_4_medication_tracker_views
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('project_4_medication_tracker/', project_4_medication_tracker_views.my_medication_tracker, name="project_4_medication_tracker_views"), the app urls are loaded as the main urls
+    path('project_4_medication_tracker/', project_4_medication_tracker_views.index, name="project_4_medication_tracker_index"),
 ]
