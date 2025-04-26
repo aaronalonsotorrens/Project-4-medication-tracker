@@ -1,0 +1,96 @@
+{% load static %}
+{% url 'home' as home_url %}
+
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <title>Medication Tracker</title>  {# <-- CHANGE THIS: Customize your app's title #}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Fonts (Optional) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons (Optional but nice) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-...." crossorigin="anonymous">
+
+    <!-- Custom CSS (Optional, if you have) -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> {# <-- YOUR CSS FILE PATH #}
+</head>
+
+<body class="d-flex flex-column h-100 main-bg">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">💊 MedTracker</a> {# <-- CHANGE branding if you want! #}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{% url 'home' %}">Home</a>
+                    </li>
+
+                    {# Example of extra nav items: #}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Add Medication</a> 
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Logs</a>
+                    </li>
+
+                </ul>
+
+                {# Optional right-side user info #}
+                <span class="navbar-text text-muted">
+                    Track your health with ease
+                </span>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-shrink-0 main-bg">
+        <div class="container pt-4">
+            {% block content %}
+            <!-- Page-specific content will be injected here -->
+            {% endblock content %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-dark text-white">
+        <div class="container text-center">
+            <p class="mb-1">&copy; 2025 Medication Tracker</p> {# <-- CHANGE Copyright #}
+            <p class="mb-0">
+                Follow us: 
+                <i class="fab fa-facebook ms-2"></i>
+                <i class="fab fa-twitter ms-2"></i>
+                <i class="fab fa-instagram ms-2"></i>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle JS (Required for Navbar toggle etc) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-...." crossorigin="anonymous"></script>
+
+    <!-- Optional: Your custom JS -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
+
+
