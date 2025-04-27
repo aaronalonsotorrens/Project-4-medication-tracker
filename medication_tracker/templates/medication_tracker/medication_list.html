@@ -2,37 +2,36 @@
 {% load static %}
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'medication_tracker/css/medication_list.css' %}">
+
 <div class="container mt-5">
     <h1 class="text-center mb-4">My Medications</h1>
 
     <div class="card shadow-sm p-4 mb-5 bg-white rounded">
+
         {% if object_list %}
-            <table class="table table-striped table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Name</th>
-                        <th>Dosage</th>
-                        <th>Frequency</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for medication in object_list %}
-                    <tr>
-                        <td>{{ medication.name }}</td>
-                        <td>{{ medication.dosage }}</td>
-                        <td>{{ medication.frequency }}</td>
-                        <td>{{ medication.start_date }}</td>
-                        <td>{{ medication.end_date }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="row">
+                {% for medication in object_list %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ medication.name }}</h5>
+                            <p class="card-text">
+                                <strong>Dosage:</strong> {{ medication.dosage }}<br>
+                                <strong>Frequency:</strong> {{ medication.frequency }} times/day<br>
+                                <strong>Start:</strong> {{ medication.start_date }}<br>
+                                <strong>End:</strong> {{ medication.end_date }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         {% else %}
-            <p class="text-center">No medications found.</p>
+            <p class="text-center">No medications found. Add a new one!</p>
         {% endif %}
+
     </div>
 </div>
 
-{% endblock content %}
+{% endblock %}
