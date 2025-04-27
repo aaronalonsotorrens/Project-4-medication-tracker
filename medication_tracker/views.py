@@ -6,4 +6,5 @@ from .models import Medication
 
 class MedicationList(generic.ListView):
     queryset = Medication.objects.all()
-    template_name = "medication_list.html"
+    template_name = "medication_tracker/index.html"
+    paginate_by = 6

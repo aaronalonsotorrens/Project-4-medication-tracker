@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Welcome to Your Medication Tracker</h1>
+    <p class="lead text-center">Easily view and manage your medication schedule and details.</p>
+
+    <div class="text-center mt-5">
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg">View Medications</a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block copyright %}
+© 2025 Your Name | Medication Tracker
+{% endblock %}
