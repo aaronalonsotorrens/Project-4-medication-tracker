@@ -4,11 +4,11 @@ from .models import Medication, SideEffect
 from .forms import SideEffectForm
 
 def HomePageView(request):
-    return render(request, 'home.html')
+    return render(request, 'medication_tracker/index.html')
 
 class MedicationList(generic.ListView):
     model = Medication
-    template_name = 'medication_list.html'
+    template_name = 'medication_tracker/medication_list.html'
     context_object_name = 'medications'
     paginate_by = 6
 
