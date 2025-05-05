@@ -7,6 +7,10 @@
 <div class="container mt-5">
     <h1 class="text-center mb-4">My Medications</h1>
 
+    <div class="text-end mb-3">
+        <a href="{% url 'medication_create' %}" class="btn btn-success">➕ Add Medication</a>
+    </div>
+
     <div class="card shadow-sm p-4 mb-5 bg-white rounded">
 
         {% if object_list %}
@@ -22,6 +26,8 @@
                                 <strong>Start:</strong> {{ medication.start_date }}<br>
                                 <strong>End:</strong> {{ medication.end_date }}
                             </p>
+                            <a href="{% url 'medication_update' medication.id %}" class="btn btn-sm btn-primary">✏️ Edit</a>
+                            <a href="{% url 'medication_delete' medication.id %}" class="btn btn-sm btn-danger">🗑️ Delete</a>
                         </div>
                     </div>
                 </div>
