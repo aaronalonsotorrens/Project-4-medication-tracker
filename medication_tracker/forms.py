@@ -1,5 +1,6 @@
 from django import forms
-from .models import SideEffect
+from .models import Medication, SideEffect
+
 
 class SideEffectForm(forms.ModelForm):
     class Meta:
