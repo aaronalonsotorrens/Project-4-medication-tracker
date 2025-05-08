@@ -23,6 +23,17 @@ class MedicationList(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['side_effect_form'] = SideEffectForm()
+
+
+        # Include side effects grouped by medication for logged-in user
+        user_side_effects = SideEffect.objects.filter(user=self.request.user)
+        effects_by_med = {}
+        for effect in user_side_effects:
+            if effect.medication.id not in effects_by_med:
+                effects_by_med[effect.medication.id] = []
+            effects_by_med[effect.medication.id].append(effect)
+
+        context['side_effects_by_med'] = effects_by_med
         return context
 
 def add_side_effect(request, medication_id):
@@ -34,8 +45,21 @@ def add_side_effect(request, medication_id):
             side_effect.user = request.user
             side_effect.medication = medication
             side_effect.save()
+            messages.success(request, "✅ Side effect reported successfully.")
+        else:
+            messages.error(request, "There was an error reporting the side effect.")
     return redirect('medication_list')
 
+
+class SideEffectDelete(LoginRequiredMixin, DeleteView):
+    model = SideEffect
+    template_name = 'medication_tracker/side_effect_confirm_delete.html'
+    success_url = reverse_lazy('medication_list')
+
+    def get_queryset(self):
+        # Ensure that users can only delete their own side effects
+        return SideEffect.objects.filter(user=self.request.user)
+    
 
 class MedicationCreate(LoginRequiredMixin, CreateView):
     model = Medication
