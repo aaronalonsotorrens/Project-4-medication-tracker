@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from .models import Medication, SideEffect
 from .forms import MedicationForm, SideEffectForm
+from django.contrib import messages
 
 def HomePageView(request):
     return render(request, 'medication_tracker/index.html')

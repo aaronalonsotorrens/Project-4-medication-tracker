@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load custom_filters %}
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'medication_tracker/css/medication_list.css' %}">
@@ -39,7 +40,7 @@
                             </form>
 
                             <!-- Show Side Effects Reported by the User for This Medication -->
-                            {% with effects=side_effects_by_med[medication.id] %}
+                            {% with effects=side_effects_by_med|dict_get:medication.id %}
                                 {% if effects %}
                                     <hr>
                                     <h6>Your Reported Side Effects</h6>
