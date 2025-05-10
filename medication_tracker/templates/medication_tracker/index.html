@@ -1,18 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <div class="container mt-5">
     <h1 class="text-center mb-4">Welcome to Your Medication Tracker</h1>
     <p class="lead text-center">Easily view and manage your medication schedule and details.</p>
 
     <div class="text-center mt-5">
-        <a href="{% url 'home' %}" class="btn btn-primary btn-lg">View Medications</a>
+        <a href="{% url 'medication_list' %}" class="btn btn-primary btn-lg">View Medications</a>
     </div>
-</div>
 
+    {% if user.is_superuser %}
+        <div class="text-center mt-5">
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-dark btn-lg">Go to Admin Dashboard</a>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
 
 {% block copyright %}
-© 2025 Aaron Alonso Torrens | Medication Tracker
+    <div class="container text-center">
+        <p>&copy; 2025 Aaron Alonso Torrens | Medication Tracker</p>
+        <p>Track your health with ease. All rights reserved.</p>
+    </div>
 {% endblock %}

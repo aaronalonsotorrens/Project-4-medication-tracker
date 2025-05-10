@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">📊 Admin Dashboard</h2>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Medications</h5>
+                    <p class="card-text fs-3">{{ total_meds }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card text-white bg-danger mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Total Side Effects</h5>
+                    <p class="card-text fs-3">{{ total_side_effects }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h4 class="mt-5">Medication Categories</h4>
+    <canvas id="medCategoryChart"></canvas>
+
+    <h4 class="mt-5">Side Effect Categories</h4>
+    <canvas id="sideEffectChart"></canvas>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const medCtx = document.getElementById('medCategoryChart');
+const sideEffectCtx = document.getElementById('sideEffectChart');
+
+new Chart(medCtx, {
+    type: 'pie',
+    data: {
+        labels: {{ med_category_labels|safe }},
+        datasets: [{
+            label: 'Medication Categories',
+            data: {{ med_category_counts|safe }},
+            backgroundColor: ['#007bff', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', '#20c997'],
+        }]
+    },
+});
+
+new Chart(sideEffectCtx, {
+    type: 'pie',
+    data: {
+        labels: {{ side_effect_labels|safe }},
+        datasets: [{
+            label: 'Side Effect Categories',
+            data: {{ side_effect_counts|safe }},
+            backgroundColor: ['#dc3545', '#ffc107', '#28a745', '#17a2b8', '#6c757d', '#343a40'],
+        }]
+    },
+});
+</script>
+{% endblock %}

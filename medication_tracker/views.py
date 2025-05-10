@@ -6,6 +6,9 @@ from django.urls import reverse_lazy
 from .models import Medication, SideEffect
 from .forms import MedicationForm, SideEffectForm
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.db import connection
+from django.shortcuts import render
 
 def HomePageView(request):
     return render(request, 'medication_tracker/index.html')
@@ -92,3 +95,42 @@ class MedicationDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         medication = self.get_object()
         return self.request.user == medication.user or self.request.user.is_superuser
+    
+@staff_member_required
+def admin_dashboard(request):
+    with connection.cursor() as cursor:
+        # Total medications
+        cursor.execute("SELECT COUNT(*) FROM medication_tracker_medication;")
+        total_meds = cursor.fetchone()[0]
+
+        # Total side effects
+        cursor.execute("SELECT COUNT(*) FROM medication_tracker_sideeffect;")
+        total_side_effects = cursor.fetchone()[0]
+
+        # Medications by health category
+        cursor.execute("""
+            SELECT category, COUNT(*) AS count
+            FROM medication_tracker_medication
+            GROUP BY category
+            ORDER BY count DESC;
+        """)
+        meds_by_category = cursor.fetchall()
+
+        # Side effects by category
+        cursor.execute("""
+            SELECT category, COUNT(*) AS count
+            FROM medication_tracker_sideeffect
+            GROUP BY category
+            ORDER BY count DESC;
+        """)
+        side_effects_by_category = cursor.fetchall()
+
+    context = {
+        "total_meds": total_meds,
+        "total_side_effects": total_side_effects,
+        "med_category_labels": [row[0] for row in meds_by_category],
+        "med_category_counts": [row[1] for row in meds_by_category],
+        "side_effect_labels": [row[0] for row in side_effects_by_category],
+        "side_effect_counts": [row[1] for row in side_effects_by_category],
+    }
+    return render(request, 'medication_tracker/admin_dashboard.html', context)
