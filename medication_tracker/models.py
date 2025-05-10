@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 
 class Medication(models.Model):
     HEALTH_CATEGORIES = [
-        ('joints', 'Joints and Muscles'),
-        ('gut', 'Gut Health'),
-        ('skin', 'Skin'),
-        ('ent', 'Eyes-Ears-Nose-Throat'),
-        ('neuro', 'Headaches and Dizziness'),
-        ('cardio', 'Heart Health'),
+        ('Joints', 'Joints and Muscles'),
+        ('Gut', 'Gut Health'),
+        ('Skin', 'Skin'),
+        ('Sensory', 'Eyes-Ears-Nose-Throat'),
+        ('Neuro', 'Headaches and Dizziness'),
+        ('Cardio', 'Heart Health'),
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='medications')
     name = models.CharField(max_length=100)
@@ -31,12 +31,12 @@ class Medication(models.Model):
 
 class SideEffect(models.Model):
     SIDE_EFFECT_CATEGORIES = [
-        ('nausea', 'Nausea or Vomiting'),
-        ('fatigue', 'Fatigue or Weakness'),
-        ('rash', 'Rashes or Skin Issues'),
-        ('mood', 'Mood Changes'),
-        ('pain', 'Muscle or Joint Pain'),
-        ('cardio', 'Heart Palpitations or Chest Pain'),
+        ('Nausea', 'Nausea or Vomiting'),
+        ('Fatigue', 'Fatigue or Weakness'),
+        ('Rash', 'Rashes or Skin Issues'),
+        ('Mood', 'Mood Changes'),
+        ('Pain', 'Muscle or Joint Pain'),
+        ('Cardio', 'Heart Palpitations or Chest Pain'),
     ]
     medication = models.ForeignKey(Medication, related_name='side_effects', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

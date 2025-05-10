@@ -5,9 +5,14 @@ from .models import Medication, SideEffect
 class SideEffectForm(forms.ModelForm):
     class Meta:
         model = SideEffect
-        fields = ['description']
+        fields = ['category', 'description']
         widgets = {
-            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 2, 'placeholder': 'Describe any side effects you are experiencing...'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 2,
+                'placeholder': 'Describe any side effects you are experiencing...'
+            }),
         }
 
 
