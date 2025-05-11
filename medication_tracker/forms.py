@@ -1,5 +1,6 @@
+from allauth.account.forms import BaseSignupForm
 from django import forms
-from .models import Medication, SideEffect
+from .models import Medication, SideEffect, UserProfile
 
 
 class SideEffectForm(forms.ModelForm):
@@ -28,3 +29,15 @@ class MedicationForm(forms.ModelForm):
             'start_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'end_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
         }
+
+
+class CustomSignupForm(BaseSignupForm):
+    first_name = forms.CharField(max_length=30, label='First Name')
+    last_name = forms.CharField(max_length=30, label='Last Name')
+
+    def save(self, request):
+        user = super().save(request)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.save()
+        return user
