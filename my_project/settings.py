@@ -53,6 +53,10 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+
+# Custom signup form for allauth
+ACCOUNT_SIGNUP_FORM_CLASS = 'medication_tracker.forms.CustomSignupForm'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
