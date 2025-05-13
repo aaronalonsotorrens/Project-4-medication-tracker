@@ -5,9 +5,17 @@
     <h1 class="text-center mb-4">Welcome to Your Medication Tracker</h1>
     <p class="lead text-center">Easily view and manage your medication schedule and details.</p>
 
+    {% if not user.is_authenticated %}
+    <div class="text-center mt-5">
+        <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">Login</a>
+    </div>
+    {% endif %}
+
+    {% if user.is_authenticated %}
     <div class="text-center mt-5">
         <a href="{% url 'medication_list' %}" class="btn btn-primary btn-lg">View Medications</a>
     </div>
+    {% endif %}
 
     {% if user.is_superuser %}
         <div class="text-center mt-5">
