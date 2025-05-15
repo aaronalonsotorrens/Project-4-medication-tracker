@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('medication_tracker', '0001_initial'),
+        ('medications', '0001_initial'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('description', models.TextField()),
                 ('reported_on', models.DateTimeField(auto_now_add=True)),
-                ('medication', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='side_effects', to='medication_tracker.medication')),
+                ('medication', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='side_effects', to='medications.medication')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
