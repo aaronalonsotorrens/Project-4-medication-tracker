@@ -8,7 +8,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('medication_tracker', '0004_alter_medication_category_alter_sideeffect_category'),
+        ('medications', '0004_alter_medication_category_alter_sideeffect_category'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 

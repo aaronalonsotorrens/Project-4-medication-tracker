@@ -11,11 +11,11 @@ from django.db import connection
 from django.shortcuts import render
 
 def HomePageView(request):
-    return render(request, 'medication_tracker/index.html')
+    return render(request, 'medications/index.html')
 
 class MedicationList(generic.ListView):
     model = Medication
-    template_name = 'medication_tracker/medication_list.html'
+    template_name = 'medications/medication_list.html'
     context_object_name = 'medications'
     paginate_by = 6
 
@@ -57,7 +57,7 @@ def add_side_effect(request, medication_id):
 
 class SideEffectDelete(LoginRequiredMixin, DeleteView):
     model = SideEffect
-    template_name = 'medication_tracker/side_effect_confirm_delete.html'
+    template_name = 'medications/side_effect_confirm_delete.html'
     success_url = reverse_lazy('medication_list')
 
     def get_queryset(self):
@@ -68,7 +68,7 @@ class SideEffectDelete(LoginRequiredMixin, DeleteView):
 class MedicationCreate(LoginRequiredMixin, CreateView):
     model = Medication
     form_class = MedicationForm
-    template_name = 'medication_tracker/medication_form.html'
+    template_name = 'medications/medication_form.html'
     success_url = reverse_lazy('medication_list')
 
     def form_valid(self, form):
@@ -79,7 +79,7 @@ class MedicationCreate(LoginRequiredMixin, CreateView):
 class MedicationUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Medication
     form_class = MedicationForm
-    template_name = 'medication_tracker/medication_form.html'
+    template_name = 'medications/medication_form.html'
     success_url = reverse_lazy('medication_list')
 
     def test_func(self):
@@ -89,7 +89,7 @@ class MedicationUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class MedicationDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Medication
-    template_name = 'medication_tracker/medication_confirm_delete.html'
+    template_name = 'medications/medication_confirm_delete.html'
     success_url = reverse_lazy('medication_list')
 
     def test_func(self):
@@ -100,17 +100,17 @@ class MedicationDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def admin_dashboard(request):
     with connection.cursor() as cursor:
         # Total medications
-        cursor.execute("SELECT COUNT(*) FROM medication_tracker_medication;")
+        cursor.execute("SELECT COUNT(*) FROM medications_medication;")
         total_meds = cursor.fetchone()[0]
 
         # Total side effects
-        cursor.execute("SELECT COUNT(*) FROM medication_tracker_sideeffect;")
+        cursor.execute("SELECT COUNT(*) FROM medications_sideeffect;")
         total_side_effects = cursor.fetchone()[0]
 
         # Medications by health category
         cursor.execute("""
             SELECT category, COUNT(*) AS count
-            FROM medication_tracker_medication
+            FROM medications_medication
             GROUP BY category
             ORDER BY count DESC;
         """)
@@ -119,7 +119,7 @@ def admin_dashboard(request):
         # Side effects by category
         cursor.execute("""
             SELECT category, COUNT(*) AS count
-            FROM medication_tracker_sideeffect
+            FROM medications_sideeffect
             GROUP BY category
             ORDER BY count DESC;
         """)
@@ -133,4 +133,4 @@ def admin_dashboard(request):
         "side_effect_labels": [row[0] for row in side_effects_by_category],
         "side_effect_counts": [row[1] for row in side_effects_by_category],
     }
-    return render(request, 'medication_tracker/admin_dashboard.html', context)
+    return render(request, 'medications/admin_dashboard.html', context)
