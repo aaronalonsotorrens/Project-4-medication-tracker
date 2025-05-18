@@ -1,0 +1,982 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 11,
+    "fields": {
+      "username": "alice_smith",
+      "first_name": "Alice",
+      "last_name": "Smith",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 301,
+    "fields": {
+      "user": 11,
+      "gender": "M",
+      "age": 39,
+      "country": "Australia"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 101,
+    "fields": {
+      "user": 11,
+      "name": "Lisinopril",
+      "dosage": "200mg",
+      "frequency": 3,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Sensory",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 201,
+    "fields": {
+      "medication": 101,
+      "user": 11,
+      "category": "Pain",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 12,
+    "fields": {
+      "username": "bob_johnson",
+      "first_name": "Bob",
+      "last_name": "Johnson",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 302,
+    "fields": {
+      "user": 12,
+      "gender": "M",
+      "age": 61,
+      "country": "Canada"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 102,
+    "fields": {
+      "user": 12,
+      "name": "Metformin",
+      "dosage": "500mg",
+      "frequency": 3,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Cardio",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 202,
+    "fields": {
+      "medication": 102,
+      "user": 12,
+      "category": "Mood",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 13,
+    "fields": {
+      "username": "carol_williams",
+      "first_name": "Carol",
+      "last_name": "Williams",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 303,
+    "fields": {
+      "user": 13,
+      "gender": "M",
+      "age": 57,
+      "country": "Australia"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 103,
+    "fields": {
+      "user": 13,
+      "name": "Metformin",
+      "dosage": "200mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Sensory",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 203,
+    "fields": {
+      "medication": 103,
+      "user": 13,
+      "category": "Cardio",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 14,
+    "fields": {
+      "username": "david_brown",
+      "first_name": "David",
+      "last_name": "Brown",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 304,
+    "fields": {
+      "user": 14,
+      "gender": "F",
+      "age": 28,
+      "country": "Brazil"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 104,
+    "fields": {
+      "user": 14,
+      "name": "Metformin",
+      "dosage": "500mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Joints",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 204,
+    "fields": {
+      "medication": 104,
+      "user": 14,
+      "category": "Rash",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 15,
+    "fields": {
+      "username": "eva_jones",
+      "first_name": "Eva",
+      "last_name": "Jones",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 305,
+    "fields": {
+      "user": 15,
+      "gender": "M",
+      "age": 64,
+      "country": "Australia"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 105,
+    "fields": {
+      "user": 15,
+      "name": "Lisinopril",
+      "dosage": "200mg",
+      "frequency": 3,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Joints",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 205,
+    "fields": {
+      "medication": 105,
+      "user": 15,
+      "category": "Rash",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 16,
+    "fields": {
+      "username": "frank_garcia",
+      "first_name": "Frank",
+      "last_name": "Garcia",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 306,
+    "fields": {
+      "user": 16,
+      "gender": "F",
+      "age": 47,
+      "country": "Canada"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 106,
+    "fields": {
+      "user": 16,
+      "name": "Omeprazole",
+      "dosage": "100mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Joints",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 206,
+    "fields": {
+      "medication": 106,
+      "user": 16,
+      "category": "Cardio",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 17,
+    "fields": {
+      "username": "grace_miller",
+      "first_name": "Grace",
+      "last_name": "Miller",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 307,
+    "fields": {
+      "user": 17,
+      "gender": "O",
+      "age": 35,
+      "country": "USA"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 107,
+    "fields": {
+      "user": 17,
+      "name": "Ibuprofen",
+      "dosage": "500mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Gut",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 207,
+    "fields": {
+      "medication": 107,
+      "user": 17,
+      "category": "Pain",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 18,
+    "fields": {
+      "username": "henry_davis",
+      "first_name": "Henry",
+      "last_name": "Davis",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 308,
+    "fields": {
+      "user": 18,
+      "gender": "O",
+      "age": 65,
+      "country": "India"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 108,
+    "fields": {
+      "user": 18,
+      "name": "Aspirin",
+      "dosage": "500mg",
+      "frequency": 1,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Joints",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 208,
+    "fields": {
+      "medication": 108,
+      "user": 18,
+      "category": "Fatigue",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 19,
+    "fields": {
+      "username": "ivy_rodriguez",
+      "first_name": "Ivy",
+      "last_name": "Rodriguez",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 309,
+    "fields": {
+      "user": 19,
+      "gender": "O",
+      "age": 43,
+      "country": "Australia"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 109,
+    "fields": {
+      "user": 19,
+      "name": "Lisinopril",
+      "dosage": "100mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Gut",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 209,
+    "fields": {
+      "medication": 109,
+      "user": 19,
+      "category": "Mood",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 20,
+    "fields": {
+      "username": "jack_martinez",
+      "first_name": "Jack",
+      "last_name": "Martinez",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 310,
+    "fields": {
+      "user": 20,
+      "gender": "O",
+      "age": 41,
+      "country": "France"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 110,
+    "fields": {
+      "user": 20,
+      "name": "Ibuprofen",
+      "dosage": "500mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Sensory",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 210,
+    "fields": {
+      "medication": 110,
+      "user": 20,
+      "category": "Pain",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 21,
+    "fields": {
+      "username": "kara_hernandez",
+      "first_name": "Kara",
+      "last_name": "Hernandez",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 311,
+    "fields": {
+      "user": 21,
+      "gender": "M",
+      "age": 32,
+      "country": "USA"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 111,
+    "fields": {
+      "user": 21,
+      "name": "Aspirin",
+      "dosage": "500mg",
+      "frequency": 3,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Cardio",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 211,
+    "fields": {
+      "medication": 111,
+      "user": 21,
+      "category": "Pain",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 22,
+    "fields": {
+      "username": "leo_lopez",
+      "first_name": "Leo",
+      "last_name": "Lopez",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 312,
+    "fields": {
+      "user": 22,
+      "gender": "M",
+      "age": 55,
+      "country": "Germany"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 112,
+    "fields": {
+      "user": 22,
+      "name": "Metformin",
+      "dosage": "500mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Joints",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 212,
+    "fields": {
+      "medication": 112,
+      "user": 22,
+      "category": "Pain",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 23,
+    "fields": {
+      "username": "mia_gonzalez",
+      "first_name": "Mia",
+      "last_name": "Gonzalez",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 313,
+    "fields": {
+      "user": 23,
+      "gender": "O",
+      "age": 31,
+      "country": "France"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 113,
+    "fields": {
+      "user": 23,
+      "name": "Metformin",
+      "dosage": "500mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Sensory",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 213,
+    "fields": {
+      "medication": 113,
+      "user": 23,
+      "category": "Cardio",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 24,
+    "fields": {
+      "username": "noah_wilson",
+      "first_name": "Noah",
+      "last_name": "Wilson",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 314,
+    "fields": {
+      "user": 24,
+      "gender": "F",
+      "age": 62,
+      "country": "Italy"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 114,
+    "fields": {
+      "user": 24,
+      "name": "Omeprazole",
+      "dosage": "100mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Cardio",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 214,
+    "fields": {
+      "medication": 114,
+      "user": 24,
+      "category": "Fatigue",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 25,
+    "fields": {
+      "username": "olivia_anderson",
+      "first_name": "Olivia",
+      "last_name": "Anderson",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 315,
+    "fields": {
+      "user": 25,
+      "gender": "F",
+      "age": 40,
+      "country": "Italy"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 115,
+    "fields": {
+      "user": 25,
+      "name": "Omeprazole",
+      "dosage": "100mg",
+      "frequency": 3,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Gut",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 215,
+    "fields": {
+      "medication": 115,
+      "user": 25,
+      "category": "Cardio",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 26,
+    "fields": {
+      "username": "paul_thomas",
+      "first_name": "Paul",
+      "last_name": "Thomas",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 316,
+    "fields": {
+      "user": 26,
+      "gender": "M",
+      "age": 20,
+      "country": "Spain"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 116,
+    "fields": {
+      "user": 26,
+      "name": "Omeprazole",
+      "dosage": "100mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Gut",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 216,
+    "fields": {
+      "medication": 116,
+      "user": 26,
+      "category": "Pain",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 27,
+    "fields": {
+      "username": "quinn_taylor",
+      "first_name": "Quinn",
+      "last_name": "Taylor",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 317,
+    "fields": {
+      "user": 27,
+      "gender": "M",
+      "age": 56,
+      "country": "India"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 117,
+    "fields": {
+      "user": 27,
+      "name": "Lisinopril",
+      "dosage": "500mg",
+      "frequency": 1,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Skin",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 217,
+    "fields": {
+      "medication": 117,
+      "user": 27,
+      "category": "Cardio",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 28,
+    "fields": {
+      "username": "ruby_moore",
+      "first_name": "Ruby",
+      "last_name": "Moore",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 318,
+    "fields": {
+      "user": 28,
+      "gender": "M",
+      "age": 57,
+      "country": "Australia"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 118,
+    "fields": {
+      "user": 28,
+      "name": "Lisinopril",
+      "dosage": "100mg",
+      "frequency": 2,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Skin",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 218,
+    "fields": {
+      "medication": 118,
+      "user": 28,
+      "category": "Nausea",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 29,
+    "fields": {
+      "username": "sam_jackson",
+      "first_name": "Sam",
+      "last_name": "Jackson",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 319,
+    "fields": {
+      "user": 29,
+      "gender": "F",
+      "age": 51,
+      "country": "Australia"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 119,
+    "fields": {
+      "user": 29,
+      "name": "Omeprazole",
+      "dosage": "100mg",
+      "frequency": 3,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Joints",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 219,
+    "fields": {
+      "medication": 119,
+      "user": 29,
+      "category": "Pain",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 30,
+    "fields": {
+      "username": "tina_martin",
+      "first_name": "Tina",
+      "last_name": "Martin",
+      "is_active": true,
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$260000$dummy$hashhere"
+    }
+  },
+  {
+    "model": "accounts.userprofile",
+    "pk": 320,
+    "fields": {
+      "user": 30,
+      "gender": "O",
+      "age": 24,
+      "country": "Brazil"
+    }
+  },
+  {
+    "model": "medications.medication",
+    "pk": 120,
+    "fields": {
+      "user": 30,
+      "name": "Aspirin",
+      "dosage": "100mg",
+      "frequency": 3,
+      "start_date": "2025-04-01",
+      "end_date": "2025-04-10",
+      "category": "Joints",
+      "notes": "Dummy notes",
+      "created_on": "2025-04-01T08:00:00Z"
+    }
+  },
+  {
+    "model": "medications.sideeffect",
+    "pk": 220,
+    "fields": {
+      "medication": 120,
+      "user": 30,
+      "category": "Fatigue",
+      "description": "Random generated side effect description.",
+      "reported_on": "2025-04-03T19:30:00Z"
+    }
+  }
+]
