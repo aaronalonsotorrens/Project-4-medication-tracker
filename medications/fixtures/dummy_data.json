@@ -17,9 +17,9 @@
     "pk": 301,
     "fields": {
       "user": 11,
-      "gender": "M",
+      "gender": "Male",
       "age": 39,
-      "country": "Australia"
+      "country": "AU"
     }
   },
   {
@@ -66,9 +66,9 @@
     "pk": 302,
     "fields": {
       "user": 12,
-      "gender": "M",
+      "gender": "Male",
       "age": 61,
-      "country": "Canada"
+      "country": "CA"
     }
   },
   {
@@ -115,9 +115,9 @@
     "pk": 303,
     "fields": {
       "user": 13,
-      "gender": "M",
+      "gender": "Male",
       "age": 57,
-      "country": "Australia"
+      "country": "AU"
     }
   },
   {
@@ -164,9 +164,9 @@
     "pk": 304,
     "fields": {
       "user": 14,
-      "gender": "F",
+      "gender": "Female",
       "age": 28,
-      "country": "Brazil"
+      "country": "BR"
     }
   },
   {
@@ -213,9 +213,9 @@
     "pk": 305,
     "fields": {
       "user": 15,
-      "gender": "M",
+      "gender": "Male",
       "age": 64,
-      "country": "Australia"
+      "country": "AU"
     }
   },
   {
@@ -262,9 +262,9 @@
     "pk": 306,
     "fields": {
       "user": 16,
-      "gender": "F",
+      "gender": "Female",
       "age": 47,
-      "country": "Canada"
+      "country": "CA"
     }
   },
   {
@@ -311,9 +311,9 @@
     "pk": 307,
     "fields": {
       "user": 17,
-      "gender": "O",
+      "gender": "Other",
       "age": 35,
-      "country": "USA"
+      "country": "US"
     }
   },
   {
@@ -360,9 +360,9 @@
     "pk": 308,
     "fields": {
       "user": 18,
-      "gender": "O",
+      "gender": "Other",
       "age": 65,
-      "country": "India"
+      "country": "US"
     }
   },
   {
@@ -409,9 +409,9 @@
     "pk": 309,
     "fields": {
       "user": 19,
-      "gender": "O",
+      "gender": "Other",
       "age": 43,
-      "country": "Australia"
+      "country": "AU"
     }
   },
   {
@@ -458,9 +458,9 @@
     "pk": 310,
     "fields": {
       "user": 20,
-      "gender": "O",
+      "gender": "Other",
       "age": 41,
-      "country": "France"
+      "country": "FR"
     }
   },
   {
@@ -507,9 +507,9 @@
     "pk": 311,
     "fields": {
       "user": 21,
-      "gender": "M",
+      "gender": "Male",
       "age": 32,
-      "country": "USA"
+      "country": "US"
     }
   },
   {
@@ -556,9 +556,9 @@
     "pk": 312,
     "fields": {
       "user": 22,
-      "gender": "M",
+      "gender": "Male",
       "age": 55,
-      "country": "Germany"
+      "country": "DE"
     }
   },
   {
@@ -605,9 +605,9 @@
     "pk": 313,
     "fields": {
       "user": 23,
-      "gender": "O",
+      "gender": "Other",
       "age": 31,
-      "country": "France"
+      "country": "FR"
     }
   },
   {
@@ -654,9 +654,9 @@
     "pk": 314,
     "fields": {
       "user": 24,
-      "gender": "F",
+      "gender": "Female",
       "age": 62,
-      "country": "Italy"
+      "country": "IT"
     }
   },
   {
@@ -703,9 +703,9 @@
     "pk": 315,
     "fields": {
       "user": 25,
-      "gender": "F",
+      "gender": "Female",
       "age": 40,
-      "country": "Italy"
+      "country": "IT"
     }
   },
   {
@@ -752,9 +752,9 @@
     "pk": 316,
     "fields": {
       "user": 26,
-      "gender": "M",
+      "gender": "Male",
       "age": 20,
-      "country": "Spain"
+      "country": "ES"
     }
   },
   {
@@ -801,9 +801,9 @@
     "pk": 317,
     "fields": {
       "user": 27,
-      "gender": "M",
+      "gender": "Male",
       "age": 56,
-      "country": "India"
+      "country": "US"
     }
   },
   {
@@ -850,9 +850,9 @@
     "pk": 318,
     "fields": {
       "user": 28,
-      "gender": "M",
+      "gender": "Male",
       "age": 57,
-      "country": "Australia"
+      "country": "AU"
     }
   },
   {
@@ -899,9 +899,9 @@
     "pk": 319,
     "fields": {
       "user": 29,
-      "gender": "F",
+      "gender": "Female",
       "age": 51,
-      "country": "Australia"
+      "country": "AU"
     }
   },
   {
@@ -948,9 +948,9 @@
     "pk": 320,
     "fields": {
       "user": 30,
-      "gender": "O",
+      "gender": "Other",
       "age": 24,
-      "country": "Brazil"
+      "country": "BR"
     }
   },
   {
