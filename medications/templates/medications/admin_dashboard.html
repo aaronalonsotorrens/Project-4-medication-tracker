@@ -29,8 +29,10 @@
     <canvas id="sideEffectChart"></canvas>
 </div>
 
-<!-- Chart.js -->
+<!-- Chart.js and Datalabels Plugin -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
 <script>
 const medCtx = document.getElementById('medCategoryChart');
 const sideEffectCtx = document.getElementById('sideEffectChart');
@@ -45,6 +47,22 @@ new Chart(medCtx, {
             backgroundColor: ['#007bff', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', '#20c997'],
         }]
     },
+    options: {
+        plugins: {
+            datalabels: {
+                formatter: (value, ctx) => {
+                    let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                    let percentage = (value * 100 / sum).toFixed(1) + "%";
+                    return percentage;
+                },
+                color: '#fff',
+                font: {
+                    weight: 'bold'
+                }
+            }
+        }
+    },
+    plugins: [ChartDataLabels]
 });
 
 new Chart(sideEffectCtx, {
@@ -57,6 +75,22 @@ new Chart(sideEffectCtx, {
             backgroundColor: ['#dc3545', '#ffc107', '#28a745', '#17a2b8', '#6c757d', '#343a40'],
         }]
     },
+    options: {
+        plugins: {
+            datalabels: {
+                formatter: (value, ctx) => {
+                    let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                    let percentage = (value * 100 / sum).toFixed(1) + "%";
+                    return percentage;
+                },
+                color: '#fff',
+                font: {
+                    weight: 'bold'
+                }
+            }
+        }
+    },
+    plugins: [ChartDataLabels]
 });
 </script>
 {% endblock %}
