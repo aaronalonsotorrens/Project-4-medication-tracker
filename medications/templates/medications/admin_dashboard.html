@@ -1,6 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container mt-4">
+<div class="container dashboard-container mt-4">
     <h2 class="mb-4">📊 Admin Dashboard</h2>
 
     <div class="row mb-4">
