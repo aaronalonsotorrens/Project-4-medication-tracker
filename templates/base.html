@@ -23,6 +23,9 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+
+    <!-- Page-specific CSS injection point -->
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body class="d-flex flex-column h-100 main-bg">
