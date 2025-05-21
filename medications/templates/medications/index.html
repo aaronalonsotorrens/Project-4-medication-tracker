@@ -11,88 +11,108 @@ About
     <h1 class="display-4 mb-3">Welcome to Your Medication Tracker</h1>
     <p class="lead">Easily view and manage your medication schedule and health records in one secure place.</p>
 
-    {% if not user.is_authenticated %}
-    <div class="mt-4">
-        <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">Login</a>
-    </div>
-    {% endif %}
+    <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+        {% if not user.is_authenticated %}
+            <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-right-to-bracket me-2"></i> Login
+            </a>
+        {% endif %}
 
-    {% if user.is_authenticated %}
-    <div class="mt-4">
-        <a href="{% url 'medication_list' %}" class="btn btn-success btn-lg">View Medications</a>
-    </div>
-    {% endif %}
+        {% if user.is_authenticated %}
+            <a href="{% url 'medication_list' %}" class="btn btn-success btn-lg">
+                <i class="fa-solid fa-pills me-2"></i> View Medications
+            </a>
+        {% endif %}
 
-    {% if user.is_superuser %}
-    <div class="mt-3">
-        <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-dark btn-lg">Go to Admin Dashboard</a>
+        {% if user.is_superuser %}
+            <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-dark btn-lg">
+                <i class="fa-solid fa-user-shield me-2"></i> Admin Dashboard
+            </a>
+        {% endif %}
     </div>
-    {% endif %}
 </section>
 
 <hr class="my-5">
 
 <!-- About Section -->
-<section class="container">
+<section class="container my-5">
     <div class="row align-items-center">
+        <!-- Text Content -->
         <div class="col-lg-7">
-            <h2 class="mb-4">About the Medication Tracker</h2>
-            <p class="mb-3">
+            <h2 class="mb-4">
+                <i class="fa-solid fa-tablets text-primary me-2"></i> About the Medication Tracker
+            </h2>
+            <p class="mb-3 text-muted">
                 This application is built to empower users to track and manage their medications and related symptoms
-                with confidence. Whether you’re on a complex treatment plan or tracking simple prescriptions, this tool
+                with confidence. Whether you are on a complex treatment plan or tracking simple prescriptions, this tool
                 brings clarity and control to your health management.
             </p>
-            <ul class="list-unstyled">
-                <li><i class="fa fa-check text-success me-2"></i>Simple and intuitive medication logging</li>
-                <li><i class="fa fa-check text-success me-2"></i>Track side effects and symptoms easily</li>
-                <li><i class="fa fa-check text-success me-2"></i>Review your complete medication history in one place</li>
+            <ul class="list-unstyled fs-5">
+                <li class="mb-2">
+                    <i class="fa fa-check-circle text-success me-2"></i> Simple and intuitive medication logging
+                </li>
+                <li class="mb-2">
+                    <i class="fa fa-check-circle text-success me-2"></i> Track side effects and symptoms easily
+                </li>
+                <li>
+                    <i class="fa fa-check-circle text-success me-2"></i> Review your complete medication history in one place
+                </li>
             </ul>
         </div>
+
+
         <div class="col-lg-5 text-center">
-            <img src="{% static 'images/pills-diary.jpg' %}" class="img-fluid rounded shadow-sm" alt="Medication log illustration">
+            <div class="bg-light p-5 rounded-4 shadow-sm d-inline-block">
+                <i class="fa-solid fa-clipboard-list fa-6x text-success"></i>
+            </div>
         </div>
     </div>
 </section>
 
 <hr class="my-5">
 
-<!-- Feature Details -->
-<section class="container">
+<!-- Feature Details (Modern Icon Version) -->
+<section class="container py-5">
     <!-- Feature 1 -->
     <div class="row mb-5 align-items-center">
-        <div class="col-md-6">
-            <img src="{% static 'images/side-effects.jpg' %}" class="img-fluid rounded shadow-sm" alt="Side effects tracking">
+        <div class="col-md-6 text-center">
+            <div class="bg-light p-4 rounded-4 shadow-sm d-inline-block">
+                <i class="fa-solid fa-notes-medical fa-5x text-danger"></i>
+            </div>
         </div>
         <div class="col-md-6">
-            <h3 class="mb-3"><i class="fa fa-heart-pulse text-danger"></i> Side Effect Logging</h3>
-            <p>Monitor how medications affect your body by logging symptoms like fatigue, nausea, and more. Each log is
-                timestamped and linked to specific drugs, making it easy to review or share with your physician.</p>
+            <h3 class="mb-3"><i class="fa fa-heart-pulse text-danger me-2"></i>Side Effect Logging</h3>
+            <p class="text-muted">Monitor how medications affect your body by logging symptoms like fatigue, nausea, and more. Each log is timestamped and linked to specific drugs, making it easy to review or share with your physician.</p>
         </div>
     </div>
 
     <!-- Feature 2 -->
     <div class="row mb-5 align-items-center flex-md-row-reverse">
-        <div class="col-md-6">
-            <img src="{% static 'images/health-records.jpg' %}" class="img-fluid rounded shadow-sm" alt="Health records">
+        <div class="col-md-6 text-center">
+            <div class="bg-light p-4 rounded-4 shadow-sm d-inline-block">
+                <i class="fa-solid fa-user-gear fa-5x text-primary"></i>
+            </div>
         </div>
         <div class="col-md-6">
-            <h3 class="mb-3"><i class="fa fa-user-circle text-primary"></i> Personalized Health Records</h3>
-            <p>Your profile stores demographic info like age, gender, and country to help tailor insights and maintain
-                continuity of care. View your full medication history at a glance — all safely stored under your account.</p>
+            <h3 class="mb-3"><i class="fa-solid fa-circle-user text-primary me-2"></i>Personalized Health Records</h3>
+            <p class="text-muted">Your profile stores demographic info like age, gender, and country to help tailor insights and maintain continuity of care. View your full medication history at a glance — all safely stored under your account.</p>
         </div>
     </div>
 
     <!-- Feature 3 -->
     <div class="row mb-5 align-items-center">
-        <div class="col-md-6">
-            <img src="{% static 'images/reminder.jpg' %}" class="img-fluid rounded shadow-sm" alt="Medication reminder">
+        <div class="col-md-6 text-center">
+            <div class="bg-light p-4 rounded-4 shadow-sm d-inline-block">
+                <i class="fa-solid fa-bell fa-5x text-warning"></i>
+            </div>
         </div>
         <div class="col-md-6">
-            <h3 class="mb-3"><i class="fa fa-bell text-warning"></i> Peace of Mind</h3>
-            <p>Never miss a dose. With structured entries and simplified UI, this tool removes complexity and helps you stay on schedule — reducing the risk of human error in managing prescriptions.</p>
+            <h3 class="mb-3"><i class="fa fa-bell text-warning me-2"></i>Peace of Mind</h3>
+            <p class="text-muted">Never miss a dose. With structured entries and simplified UI, this tool removes complexity and helps you stay on schedule — reducing the risk of human error in managing prescriptions.</p>
         </div>
     </div>
 </section>
+
 {% endblock %}
 
 {% block copyright %}
