@@ -126,14 +126,14 @@ def admin_dashboard(request):
                 JOIN accounts_userprofile up ON u.id = up.user_id
                 WHERE up.gender = %s
                 GROUP BY se.category
-                ORDER BY COUNT(*) DESC;
+                ORDER BY COUNT(*) DESC
             """, [gender])
         else:
             cursor.execute("""
                 SELECT category, COUNT(*) 
                 FROM medications_sideeffect
                 GROUP BY category
-                ORDER BY COUNT(*) DESC;
+                ORDER BY COUNT(*) DESC
             """)
         side_effects_by_category = cursor.fetchall()
 

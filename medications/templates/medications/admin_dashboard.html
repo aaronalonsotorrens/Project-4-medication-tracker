@@ -30,7 +30,18 @@
     <h4 class="mt-5">Medication Categories</h4>
     <canvas id="medCategoryChart"></canvas>
 
-    <h4 class="mt-5">Side Effect Categories</h4>
+    <div class="d-flex align-items-center justify-content-between mt-5">
+        <h4 class="mb-0">Side Effect Categories</h4>
+        <div class="form-group mb-3">
+            <label for="genderSelect" class="me-2">Filter by Gender:</label>
+            <select id="genderSelect" class="form-select">
+                <option value="All" selected>All</option>
+                {% for gender in gender_options %}
+                <option value="{{ gender }}">{{ gender }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
     <canvas id="sideEffectChart"></canvas>
 </div>
 
@@ -42,6 +53,10 @@
 const medCtx = document.getElementById('medCategoryChart');
 const sideEffectCtx = document.getElementById('sideEffectChart');
 
+const genderFilteredData = {{ gender_side_effect_data|safe }};
+let currentChart;
+
+// Medication chart (static)
 new Chart(medCtx, {
     type: 'pie',
     data: {
@@ -57,45 +72,54 @@ new Chart(medCtx, {
             datalabels: {
                 formatter: (value, ctx) => {
                     let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                    let percentage = (value * 100 / sum).toFixed(1) + "%";
-                    return percentage;
+                    return (value * 100 / sum).toFixed(1) + "%";
                 },
                 color: '#fff',
-                font: {
-                    weight: 'bold'
-                }
+                font: { weight: 'bold' }
             }
         }
     },
     plugins: [ChartDataLabels]
 });
 
-new Chart(sideEffectCtx, {
-    type: 'pie',
-    data: {
-        labels: {{ side_effect_labels|safe }},
-        datasets: [{
-            label: 'Side Effect Categories',
-            data: {{ side_effect_counts|safe }},
-            backgroundColor: ['#dc3545', '#ffc107', '#28a745', '#17a2b8', '#6c757d', '#343a40'],
-        }]
-    },
-    options: {
-        plugins: {
-            datalabels: {
-                formatter: (value, ctx) => {
-                    let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                    let percentage = (value * 100 / sum).toFixed(1) + "%";
-                    return percentage;
-                },
-                color: '#fff',
-                font: {
-                    weight: 'bold'
+// Side effect chart (dynamic by gender)
+function renderSideEffectChart(gender) {
+    const data = genderFilteredData[gender] || genderFilteredData["All"];
+    const ctx = sideEffectCtx.getContext('2d');
+    if (currentChart) {
+        currentChart.destroy();
+    }
+
+    currentChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: data.labels,
+            datasets: [{
+                label: `Side Effects - ${gender}`,
+                data: data.counts,
+                backgroundColor: ['#dc3545', '#ffc107', '#28a745', '#17a2b8', '#6c757d', '#343a40'],
+            }]
+        },
+        options: {
+            plugins: {
+                datalabels: {
+                    formatter: (value, ctx) => {
+                        let sum = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        return (value * 100 / sum).toFixed(1) + "%";
+                    },
+                    color: '#fff',
+                    font: { weight: 'bold' }
                 }
             }
-        }
-    },
-    plugins: [ChartDataLabels]
+        },
+        plugins: [ChartDataLabels]
+    });
+}
+
+document.getElementById("genderSelect").addEventListener("change", function () {
+    renderSideEffectChart(this.value);
 });
+
+renderSideEffectChart("All");
 </script>
 {% endblock %}
