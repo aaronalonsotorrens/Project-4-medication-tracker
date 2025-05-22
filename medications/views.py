@@ -98,27 +98,70 @@ class MedicationDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
 @staff_member_required
 def admin_dashboard(request):
-    gender = request.GET.get('gender')  # optional filter
+    # We'll prepare data for all genders found + 'All'
+    genders = ['Male', 'Female', 'Other']  # Adjust based on your data
 
     with connection.cursor() as cursor:
-        # Total medications
+        # Total medications and side effects
         cursor.execute("SELECT COUNT(*) FROM medications_medication;")
         total_meds = cursor.fetchone()[0]
 
-        # Total side effects
         cursor.execute("SELECT COUNT(*) FROM medications_sideeffect;")
         total_side_effects = cursor.fetchone()[0]
 
-        # Medications by category
+        # Medications by category (all)
         cursor.execute("""
             SELECT category, COUNT(*) 
-            FROM medications_medication 
-            GROUP BY category ORDER BY COUNT(*) DESC;
+            FROM medications_medication
+            GROUP BY category
+            ORDER BY COUNT(*) DESC
         """)
-        meds_by_category = cursor.fetchall()
+        all_meds = cursor.fetchall()
 
-        # Side effects by category, filtered by gender if applicable
-        if gender:
+        # Side effects by category (all)
+        cursor.execute("""
+            SELECT category, COUNT(*) 
+            FROM medications_sideeffect
+            GROUP BY category
+            ORDER BY COUNT(*) DESC
+        """)
+        all_side_effects = cursor.fetchall()
+
+        # Build medication data dict with gender keys
+        gender_medication_data = {
+            "All": {
+                "labels": [row[0] for row in all_meds],
+                "counts": [row[1] for row in all_meds],
+            }
+        }
+
+        # Build side effect data dict with gender keys
+        gender_side_effect_data = {
+            "All": {
+                "labels": [row[0] for row in all_side_effects],
+                "counts": [row[1] for row in all_side_effects],
+            }
+        }
+
+        # Fetch gender-specific data for meds and side effects
+        for gender in genders:
+            # Medications filtered by gender
+            cursor.execute("""
+                SELECT m.category, COUNT(*) 
+                FROM medications_medication m
+                JOIN auth_user u ON m.user_id = u.id
+                JOIN accounts_userprofile up ON u.id = up.user_id
+                WHERE up.gender = %s
+                GROUP BY m.category
+                ORDER BY COUNT(*) DESC
+            """, [gender])
+            med_gender_data = cursor.fetchall()
+            gender_medication_data[gender] = {
+                "labels": [row[0] for row in med_gender_data],
+                "counts": [row[1] for row in med_gender_data],
+            }
+
+            # Side effects filtered by gender
             cursor.execute("""
                 SELECT se.category, COUNT(*) 
                 FROM medications_sideeffect se
@@ -128,23 +171,19 @@ def admin_dashboard(request):
                 GROUP BY se.category
                 ORDER BY COUNT(*) DESC
             """, [gender])
-        else:
-            cursor.execute("""
-                SELECT category, COUNT(*) 
-                FROM medications_sideeffect
-                GROUP BY category
-                ORDER BY COUNT(*) DESC
-            """)
-        side_effects_by_category = cursor.fetchall()
+            se_gender_data = cursor.fetchall()
+            gender_side_effect_data[gender] = {
+                "labels": [row[0] for row in se_gender_data],
+                "counts": [row[1] for row in se_gender_data],
+            }
 
     context = {
         "total_meds": total_meds,
         "total_side_effects": total_side_effects,
-        "med_category_labels": [row[0] for row in meds_by_category],
-        "med_category_counts": [row[1] for row in meds_by_category],
-        "side_effect_labels": [row[0] for row in side_effects_by_category],
-        "side_effect_counts": [row[1] for row in side_effects_by_category],
-        "selected_gender": gender or "All",
+        "gender_medication_data": gender_medication_data,
+        "gender_side_effect_data": gender_side_effect_data,
+        "genders": ["All"] + genders,
+        "selected_gender": request.GET.get('gender', 'All'),
     }
 
     return render(request, 'medications/admin_dashboard.html', context)
