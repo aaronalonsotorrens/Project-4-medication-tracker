@@ -13,6 +13,20 @@
     </div>
 
     <div class="card shadow-sm p-4 mb-5 bg-white rounded">
+   
+    <!-- Sorting Form -->
+    <form method="get" class="mb-3">
+        <label for="sort_by" class="form-label">Sort by:</label>
+        <select name="sort_by" id="sort_by" class="form-select d-inline-block w-auto">
+            <option value="">-- Choose --</option>
+            <option value="name" {% if request.GET.sort_by == 'name' %}selected{% endif %}>Medication Name</option>
+            {% if request.user.is_superuser %}
+                <option value="user" {% if request.GET.sort_by == 'user' %}selected{% endif %}>User</option>
+            {% endif %}
+            <option value="date_created" {% if request.GET.sort_by == 'date_created' %}selected{% endif %}>Date Created (Oldest)</option>
+        </select>
+        <button type="submit" class="btn btn-secondary btn-sm ms-2">Apply</button>
+    </form>
 
         {% if medications %}
             <div class="row">
@@ -22,6 +36,9 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ medication.name }}</h5>
                             <p class="card-text">
+                                {% if request.user.is_superuser %}
+                                    <p><strong>Added by:</strong> {{ medication.user.username }}</p>
+                                {% endif %}
                                 <strong>Dosage:</strong> {{ medication.dosage }}<br>
                                 <strong>Frequency:</strong> {{ medication.frequency }} times/day<br>
                                 <strong>Start:</strong> {{ medication.start_date }}<br>
