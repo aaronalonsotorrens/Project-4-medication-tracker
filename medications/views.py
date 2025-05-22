@@ -20,9 +20,22 @@ class MedicationList(generic.ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        if self.request.user.is_superuser:
-            return Medication.objects.all()
-        return Medication.objects.filter(user=self.request.user)
+        # Admins see all, others see only their meds
+        queryset = Medication.objects.all() if self.request.user.is_superuser else Medication.objects.filter(user=self.request.user)
+
+        # Optional: improve query efficiency by including user info
+        queryset = queryset.select_related('user')
+
+        # Sorting logic
+        sort_by = self.request.GET.get('sort_by')
+        if sort_by == 'name':
+            queryset = queryset.order_by('name')
+        elif sort_by == 'user' and self.request.user.is_superuser:
+            queryset = queryset.order_by('user__username')
+        elif sort_by == 'date_created':
+            queryset = queryset.order_by('created_on')
+
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
