@@ -98,6 +98,8 @@ class MedicationDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
 @staff_member_required
 def admin_dashboard(request):
+    gender = request.GET.get('gender')  # optional filter
+
     with connection.cursor() as cursor:
         # Total medications
         cursor.execute("SELECT COUNT(*) FROM medications_medication;")
@@ -107,22 +109,32 @@ def admin_dashboard(request):
         cursor.execute("SELECT COUNT(*) FROM medications_sideeffect;")
         total_side_effects = cursor.fetchone()[0]
 
-        # Medications by health category
+        # Medications by category
         cursor.execute("""
-            SELECT category, COUNT(*) AS count
-            FROM medications_medication
-            GROUP BY category
-            ORDER BY count DESC;
+            SELECT category, COUNT(*) 
+            FROM medications_medication 
+            GROUP BY category ORDER BY COUNT(*) DESC;
         """)
         meds_by_category = cursor.fetchall()
 
-        # Side effects by category
-        cursor.execute("""
-            SELECT category, COUNT(*) AS count
-            FROM medications_sideeffect
-            GROUP BY category
-            ORDER BY count DESC;
-        """)
+        # Side effects by category, filtered by gender if applicable
+        if gender:
+            cursor.execute("""
+                SELECT se.category, COUNT(*) 
+                FROM medications_sideeffect se
+                JOIN auth_user u ON se.user_id = u.id
+                JOIN accounts_userprofile up ON u.id = up.user_id
+                WHERE up.gender = %s
+                GROUP BY se.category
+                ORDER BY COUNT(*) DESC;
+            """, [gender])
+        else:
+            cursor.execute("""
+                SELECT category, COUNT(*) 
+                FROM medications_sideeffect
+                GROUP BY category
+                ORDER BY COUNT(*) DESC;
+            """)
         side_effects_by_category = cursor.fetchall()
 
     context = {
@@ -132,5 +144,7 @@ def admin_dashboard(request):
         "med_category_counts": [row[1] for row in meds_by_category],
         "side_effect_labels": [row[0] for row in side_effects_by_category],
         "side_effect_counts": [row[1] for row in side_effects_by_category],
+        "selected_gender": gender or "All",
     }
+
     return render(request, 'medications/admin_dashboard.html', context)

@@ -16,6 +16,9 @@ About
             <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">
                 <i class="fa-solid fa-right-to-bracket me-2"></i> Login
             </a>
+            <a href="{% url 'account_signup' %}" class="btn btn-primary btn-lg">
+                <i class="fa-solid fa-user-plus me-2"></i> Register
+            </a>
         {% endif %}
 
         {% if user.is_authenticated %}
