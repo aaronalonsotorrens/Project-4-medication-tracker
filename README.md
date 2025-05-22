@@ -27,6 +27,85 @@ This project is ideal for individuals seeking a straightforward, user-friendly t
 
 ---
 
+## 📄 Pages & Functionality Overview
+
+### 🏠 Home Page
+
+The home page is accessible to all users, including those not logged in. It provides an overview of the application's purpose and features, encouraging users to register or log in to access full functionality. It offers detailed information about the application's benefits and how it assists users in managing their medications effectively.
+
+---
+
+## 👤 User Management
+
+### Registration & Signup  
+New users register with a comprehensive signup form extending Django Allauth’s default signup by requiring first name, last name, gender, age, and country of residence. Gender is selected from predefined choices: Male, Female, or Other. Country selection leverages the `django-countries` package, presenting a dropdown list of countries for standardized input. Age is entered as a positive integer. These fields are saved in an associated `UserProfile` model linked to the user account.
+
+### Login  
+Users log in using their email and password credentials. Validation ensures secure authentication with appropriate error feedback.
+
+### Profile Page  
+Once logged in, users access their profile page displaying personal info alongside a list of their current medications. Profiles can be edited to update demographic info or account details.
+
+---
+
+## 💊 Medication Management
+
+Users manage their medications through a user-friendly interface:
+
+- **Add Medication:** Users add medications by filling a form with fields for medication name, dosage (e.g., “500mg”), frequency (times per day), start and end dates, and selecting a health category from a dropdown list. Categories include Joints and Muscles, Gut Health, Skin, Eyes-Ears-Nose-Throat, Headaches and Dizziness, and Heart Health, ensuring consistent classification of medication purposes.
+
+- **View Medications:** The app displays medications in a paginated list, showing all relevant details. Each medication is tied to the logged-in user, enforcing privacy.
+
+- **Edit & Delete:** Users can update or remove medications they previously added. Forms are pre-populated with current data for ease of editing. Deletions prompt confirmation to prevent accidental loss.
+
+Medication entries are sorted by creation date, showing the newest first for quick access to recent records.
+
+---
+
+## ⚠️ Side Effect Reporting
+
+Users can report side effects experienced from medications via a dedicated form:
+
+- **Side Effect Categories:** Side effects are selected from predefined categories such as Nausea or Vomiting, Fatigue or Weakness, Rashes or Skin Issues, Mood Changes, Muscle or Joint Pain, and Heart Palpitations or Chest Pain. This dropdown ensures standardized data input.
+
+- **Detailed Descriptions:** Users provide detailed textual descriptions explaining their symptoms or experiences.
+
+Side effects are linked to both the user and the specific medication. Reports are displayed grouped by medication on the medication list page. Users can delete their side effect entries with confirmation prompts, maintaining control over their data.
+
+---
+
+## 📊 Admin Dashboard & Analytics
+
+Administrators access a comprehensive dashboard presenting aggregated insights on medication usage and side effect reports:
+
+- **Totals & Trends:** The dashboard displays overall counts of medications and side effects recorded.
+
+- **Category Breakdown:** Data is grouped by health categories for medications and side effect categories, showing the most common entries.
+
+- **Demographic Filters:** Leveraging extended user profile data (gender, age, country), the dashboard offers filtering options by gender (Male, Female, Other, All). This segmentation provides targeted analytics to uncover trends or issues specific to demographic groups.
+
+- **Raw SQL Queries:** The app uses optimized raw SQL queries to aggregate data efficiently, joining medication and side effect records with user profiles.
+
+This rich, dynamic dashboard supports better monitoring and informed decision-making to improve user health management.
+
+---
+
+## ⚙️ Technical Details
+
+- **Models:** The `Medication` model stores medication details, user linkage, and category selections. The `SideEffect` model links side effects to medications and users, with categorized types and descriptions. User demographic data is stored separately in a `UserProfile` model extending Django’s default User.
+
+- **Forms:** Custom forms leverage Django’s forms framework with styled widgets for consistent UI:
+  - `CustomSignupForm` extends Django Allauth signup, adding fields for first name, last name, gender (dropdown), age, and country (using django-countries).
+  - `MedicationForm` handles medication data entry with input validation and dropdowns for categories.
+  - `SideEffectForm` manages side effect reporting, with dropdown selection and a textarea for detailed descriptions.
+
+- **Views:** Class-based views handle listing, creating, updating, and deleting medications with user access control. Side effect reporting and deletion include POST handling with messages for success/failure feedback. The admin dashboard view uses raw SQL and staff-only access restrictions.
+
+- **User Experience:** Pagination, dropdown menus, and confirmation prompts ensure ease of use and prevent accidental data loss. Side effects are displayed grouped by medication for context.
+
+
+---
+
 ## 🗂️ Project Structure Highlights
 
 ```
