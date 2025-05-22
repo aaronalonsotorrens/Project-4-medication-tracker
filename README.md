@@ -1,7 +1,17 @@
 
-# 💊 Django Medication Tracker with Admin Dashboard & Analytics
+# 💊 Django Medication Tracker
 
-This project is a Django-based Medication Tracker designed for users to log their medications and report side effects. It includes an intuitive admin dashboard for high-level insights and basic visualizations using Chart.js.
+Medication Tracker is a web app designed to help users manage and track their personal medication schedules with ease and reliability.
+
+Unregistered users can access the homepage to learn more about the purpose of the app and its features. To begin using the app, users must register an account via the sign-up form. Once registered, users can securely log in to access the full functionality of the tracker.
+
+Logged-in users can create new medication entries, browse a list of all their current medications, and update or delete existing entries as needed. Each medication record includes details such as name, dosage, frequency, and instructions.
+
+From their personalized dashboard, users have a clear view of all active medications and their status. The clean, responsive design ensures a smooth experience across devices, whether managing prescriptions at home or on the go.
+
+Medication data is securely stored and managed through the backend, built with Django. The admin panel allows site administrators to oversee all user activity, manage medications, and perform data maintenance tasks as needed.
+
+This project is ideal for individuals seeking a straightforward, user-friendly tool to support their health routine and medication adherence.
 
 ---
 
@@ -13,8 +23,6 @@ This project is a Django-based Medication Tracker designed for users to log thei
 - Side effect category options (dropdown)
 - Admin dashboard with:
   - Total medication and side effect counts
-  - Top 5 most common side effect categories
-  - Bar chart using Chart.js
 - Admin access control for dashboard visibility
 
 ---
