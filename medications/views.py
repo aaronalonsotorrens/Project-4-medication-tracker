@@ -2,18 +2,20 @@ from django.shortcuts import render, redirect
 from django.views import generic
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from .models import Medication, SideEffect
 from .forms import MedicationForm, SideEffectForm
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db import connection
-from django.shortcuts import render
 
+@login_required
 def HomePageView(request):
     return render(request, 'medications/index.html')
 
-class MedicationList(generic.ListView):
+
+class MedicationList(LoginRequiredMixin, generic.ListView):
     model = Medication
     template_name = 'medications/medication_list.html'
     context_object_name = 'medications'
@@ -22,9 +24,7 @@ class MedicationList(generic.ListView):
     def get_queryset(self):
         # Admins see all, others see only their meds
         queryset = Medication.objects.all() if self.request.user.is_superuser else Medication.objects.filter(user=self.request.user)
-
-        # Optional: improve query efficiency by including user info
-        queryset = queryset.select_related('user')
+        queryset = queryset.select_related('user')  # Improve query efficiency
 
         # Sorting logic
         sort_by = self.request.GET.get('sort_by')
@@ -41,18 +41,17 @@ class MedicationList(generic.ListView):
         context = super().get_context_data(**kwargs)
         context['side_effect_form'] = SideEffectForm()
 
-
-        # Include side effects grouped by medication for logged-in user
+        # Side effects grouped by medication for logged-in user
         user_side_effects = SideEffect.objects.filter(user=self.request.user)
         effects_by_med = {}
         for effect in user_side_effects:
-            if effect.medication.id not in effects_by_med:
-                effects_by_med[effect.medication.id] = []
-            effects_by_med[effect.medication.id].append(effect)
+            effects_by_med.setdefault(effect.medication.id, []).append(effect)
 
         context['side_effects_by_med'] = effects_by_med
         return context
 
+
+@login_required
 def add_side_effect(request, medication_id):
     if request.method == "POST":
         medication = Medication.objects.get(id=medication_id)
@@ -74,9 +73,8 @@ class SideEffectDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('medication_list')
 
     def get_queryset(self):
-        # Ensure that users can only delete their own side effects
         return SideEffect.objects.filter(user=self.request.user)
-    
+
 
 class MedicationCreate(LoginRequiredMixin, CreateView):
     model = Medication
@@ -87,7 +85,7 @@ class MedicationCreate(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-    
+
 
 class MedicationUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Medication
@@ -98,7 +96,7 @@ class MedicationUpdate(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         medication = self.get_object()
         return self.request.user == medication.user or self.request.user.is_superuser
-    
+
 
 class MedicationDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Medication
@@ -108,21 +106,19 @@ class MedicationDelete(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         medication = self.get_object()
         return self.request.user == medication.user or self.request.user.is_superuser
-    
+
+
 @staff_member_required
 def admin_dashboard(request):
-    # We'll prepare data for all genders found + 'All'
-    genders = ['Male', 'Female', 'Other']  # Adjust based on your data
+    genders = ['Male', 'Female', 'Other']
 
     with connection.cursor() as cursor:
-        # Total medications and side effects
         cursor.execute("SELECT COUNT(*) FROM medications_medication;")
         total_meds = cursor.fetchone()[0]
 
         cursor.execute("SELECT COUNT(*) FROM medications_sideeffect;")
         total_side_effects = cursor.fetchone()[0]
 
-        # Medications by category (all)
         cursor.execute("""
             SELECT category, COUNT(*) 
             FROM medications_medication
@@ -131,7 +127,6 @@ def admin_dashboard(request):
         """)
         all_meds = cursor.fetchall()
 
-        # Side effects by category (all)
         cursor.execute("""
             SELECT category, COUNT(*) 
             FROM medications_sideeffect
@@ -140,7 +135,6 @@ def admin_dashboard(request):
         """)
         all_side_effects = cursor.fetchall()
 
-        # Build medication data dict with gender keys
         gender_medication_data = {
             "All": {
                 "labels": [row[0] for row in all_meds],
@@ -148,7 +142,6 @@ def admin_dashboard(request):
             }
         }
 
-        # Build side effect data dict with gender keys
         gender_side_effect_data = {
             "All": {
                 "labels": [row[0] for row in all_side_effects],
@@ -156,9 +149,7 @@ def admin_dashboard(request):
             }
         }
 
-        # Fetch gender-specific data for meds and side effects
         for gender in genders:
-            # Medications filtered by gender
             cursor.execute("""
                 SELECT m.category, COUNT(*) 
                 FROM medications_medication m
@@ -174,7 +165,6 @@ def admin_dashboard(request):
                 "counts": [row[1] for row in med_gender_data],
             }
 
-            # Side effects filtered by gender
             cursor.execute("""
                 SELECT se.category, COUNT(*) 
                 FROM medications_sideeffect se
