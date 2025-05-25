@@ -1,6 +1,8 @@
 from allauth.account.forms import SignupForm
 from django import forms
 from .models import UserProfile
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 
 
 class CustomSignupForm(SignupForm):
@@ -8,7 +10,10 @@ class CustomSignupForm(SignupForm):
     last_name = forms.CharField(max_length=30, label='Last Name')
     gender = forms.ChoiceField(choices=UserProfile.GENDER_CHOICES, label='Gender')
     age = forms.IntegerField(min_value=0, label='Age')
-    country = forms.CharField(max_length=100, label='Country')
+    country = CountryField(blank_label='(select country)').formfield(
+        widget=CountrySelectWidget(),
+        label='Country'
+    )
 
     def save(self, request):
         # Save the user instance
