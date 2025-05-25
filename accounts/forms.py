@@ -11,7 +11,7 @@ class CustomSignupForm(SignupForm):
     gender = forms.ChoiceField(choices=UserProfile.GENDER_CHOICES, label='Gender')
     age = forms.IntegerField(min_value=0, label='Age')
     country = CountryField(blank_label='(select country)').formfield(
-        widget=CountrySelectWidget(),
+        widget=CountrySelectWidget(layout='{widget}'),  # Removes flag
         label='Country'
     )
 
