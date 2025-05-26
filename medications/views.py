@@ -11,7 +11,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.db import connection
 
 @login_required
-def HomePageView(request):
+def home_page_view(request):
     return render(request, 'medications/index.html')
 
 
@@ -54,7 +54,7 @@ class MedicationList(LoginRequiredMixin, generic.ListView):
 @login_required
 def add_side_effect(request, medication_id):
     if request.method == "POST":
-        medication = Medication.objects.get(id=medication_id)
+        medication = get_object_or_404(Medication, id=medication_id)
         form = SideEffectForm(request.POST)
         if form.is_valid():
             side_effect = form.save(commit=False)

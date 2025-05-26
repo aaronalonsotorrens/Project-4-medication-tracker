@@ -43,10 +43,15 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == home_url %}active{% endif %}" href="{{ home_url }}">Home</a>
                     </li>
-
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'medication_list' %}">My Medication</a>
+                            <a class="nav-link" href="{% url 'medication_list' %}">
+                                {% if request.user.is_staff %}
+                                    User Medications
+                                {% else %}
+                                    My Medication
+                                {% endif %}
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{{ logout_url }}">Logout</a>
