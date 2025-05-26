@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import handler404, handler500, handler403, handler405
+from django.conf.urls import handler404, handler500, handler403
 from medication_tracker import views as error_views
 
 urlpatterns = [
@@ -26,7 +26,7 @@ urlpatterns = [
     path("", include('medications.urls')),
 ]
 
+# Error handlers (only supported ones)
 handler404 = 'medication_tracker.views.error_404_view'
 handler500 = 'medication_tracker.views.error_500_view'
 handler403 = 'medication_tracker.views.error_403_view'
-handler405 = 'medication_tracker.views.error_405_view'

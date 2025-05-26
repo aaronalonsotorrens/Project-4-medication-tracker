@@ -8,6 +8,3 @@ def error_500_view(request):
 
 def error_403_view(request, exception):
     return render(request, 'errors/403.html', status=403)
-
-def error_405_view(request, exception):
-    return render(request, 'errors/405.html', status=405)
