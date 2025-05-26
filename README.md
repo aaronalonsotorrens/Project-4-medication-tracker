@@ -109,26 +109,69 @@ This rich, dynamic dashboard supports better monitoring and informed decision-ma
 ## 🗂️ Project Structure Highlights
 
 ```
-medication_tracker/
-│
-├── templates/
-│   ├── base.html
-│   ├── medication_list.html
-│   ├── medication_form.html
-│   ├── dashboard.html
-│
-├── static/
-│   └── medication_tracker/css/
-│       └── medication_list.css
-│
-├── models.py
-├── views.py
-├── forms.py
-├── urls.py
-└── admin.py
 ```
+---
+
+## Wireframes
+
+Wireframes were created in Uiwizard. They were used for initial planning of template layouts.
+
+<details>
+<summary>Index Wireframe</summary>
+
+![Index Wireframe](readme-docs/wireframe/index_page.png)
+</details>
+
+<details>
+<summary>Medication Wireframe</summary>
+
+![Medication Wireframe](readme-docs/wireframe/medication_page.png)
+</details>
+
+<details>
+<summary>Admin Dashboard Wireframe</summary>
+
+![Admin Dashboard Wireframe](readme-docs/wireframe/admin_dashboard.png)
+</details>
+
+<details>
+<summary>Registration Page Wireframe</summary>
+
+![Registration page Wireframe](readme-docs/wireframe/register_page.png)
+</details>
 
 ---
+
+# Testing
+
+
+## [HTML Validator](https://validator.w3.org/)
+
+HTML was validated by copying the page source and pasting into the validator.
+
+- <details>
+  <summary>Index Results</summary>
+
+![Index results](readme-docs/testing/index_page_html_validation.png)
+  </details>
+
+- <details>
+  <summary>Add Medication Results</summary>
+
+![Index results](readme-docs/testing/add_medication_html_validation.png)
+  </details>
+
+- <details>
+  <summary>View Medication Results</summary>
+
+![Index results](readme-docs/testing/view_medication_html_validation.png)
+  </details>
+
+- <details>
+  <summary>Signup Results</summary>
+
+![Index results](readme-docs/testing/signup_html_validation.png)
+  </details>
 
 ## 🧠 Models Overview
 
@@ -205,42 +248,7 @@ def dashboard(request):
 
 - **Dashboard** is only visible to superusers.
 - Users can only manage their own medications and side effects.
-- Superusers can view all medications in the dashboard.
-
----
-
-## ✅ How to Run
-
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/yourusername/medication-tracker.git
-   cd medication-tracker
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Run migrations:
-   ```bash
-   python manage.py makemigrations
-   python manage.py migrate
-   ```
-
-4. Create a superuser:
-   ```bash
-   python manage.py createsuperuser
-   ```
-
-5. Start the server:
-   ```bash
-   python manage.py runserver
-   ```
-
-6. Access the dashboard:
-   - Login as a superuser
-   - Navigate to `http://localhost:8000/dashboard/`
+- Superusers can view all medications and view extracted information in the dashboard.
 
 ---
 
