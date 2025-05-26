@@ -5,7 +5,7 @@ Medication Tracker is a web app designed to help users manage and track their pe
 
 Unregistered users can access the homepage to learn more about the purpose of the app and its features. To begin using the app, users must register an account via the sign-up form. Once registered, users can securely log in to access the full functionality of the tracker.
 
-Logged-in users can create new medication entries, browse a list of all their current medications, and update or delete existing entries as needed. Each medication record includes details such as name, dosage, frequency, and instructions.
+Logged-in users can create new medication entries, browse a list of all their current medications, and update or delete existing entries as needed. Each medication record includes details such as name, dosage, frequency and the option to report side effects.
 
 From their personalized dashboard, users have a clear view of all active medications and their status. The clean, responsive design ensures a smooth experience across devices, whether managing prescriptions at home or on the go.
 
@@ -15,29 +15,48 @@ This project is ideal for individuals seeking a straightforward, user-friendly t
 
 ---
 
-## 🚀 Features
+## 👤 User Stories
 
-- User authentication (login/register/logout)
-- Create, update, and delete medications
-- Report side effects per medication
-- Side effect category options (dropdown)
-- Admin dashboard with:
-  - Total medication and side effect counts
-- Admin access control for dashboard visibility
+### 👩 Regular User
+
+- **As a user**, I can register, log in, and log out securely.
+- **As a user**, I can create, edit, and delete my medications.
+- **As a user**, I can report side effects per medication.
+- **As a user**, I can categorize my medications and side effects via dropdowns.
+- **As a user**, I can view a paginated and sortable list of my medications.
+- **As a user**, I can delete any previously reported side effect.
+- **As a user**, I can only access my own data and not that of other users.
+
+### 🛡 Admin User
+
+- **As an admin**, I can access a dashboard with:
+  - Total medication and side effect counts.
+  - Top categories of medications and side effects.
+  - Gender-based breakdowns of medications and side effects.
+- **As an admin**, I can sort medication lists by username.
+- **As an admin**, I can view and manage all user data.
+- **As an admin**, I can only access the dashboard when logged in as a staff member.
 
 ---
 
-## 📄 Pages & Functionality Overview
+## 📄 Pages & features
 
 ### 🏠 Home Page
 
 The home page is accessible to all users, including those not logged in. It provides an overview of the application's purpose and features, encouraging users to register or log in to access full functionality. It offers detailed information about the application's benefits and how it assists users in managing their medications effectively.
+
+- Django’s built-in authentication system handles registration, login, and logout.
+
+- Medication and side effect data are filtered by the authenticated user — no other users can access or modify my data.
+
+- Access control is enforced through LoginRequiredMixin and @login_required.
 
 ---
 
 ## 👤 User Management
 
 ### Registration & Signup  
+
 New users register with a comprehensive signup form extending Django Allauth’s default signup by requiring first name, last name, gender, age, and country of residence. Gender is selected from predefined choices: Male, Female, or Other. Country selection leverages the `django-countries` package, presenting a dropdown list of countries for standardized input. Age is entered as a positive integer. These fields are saved in an associated `UserProfile` model linked to the user account.
 
 ### Login  
@@ -48,29 +67,148 @@ Once logged in, users access their profile page displaying personal info alongsi
 
 ---
 
-## 💊 Medication Management
+## 💊 Medication page
 
-Users manage their medications through a user-friendly interface:
+### 💊 Create, update and delete medications
 
-- **Add Medication:** Users add medications by filling a form with fields for medication name, dosage (e.g., “500mg”), frequency (times per day), start and end dates, and selecting a health category from a dropdown list. Categories include Joints and Muscles, Gut Health, Skin, Eyes-Ears-Nose-Throat, Headaches and Dizziness, and Heart Health, ensuring consistent classification of medication purposes.
-
-- **View Medications:** The app displays medications in a paginated list, showing all relevant details. Each medication is tied to the logged-in user, enforcing privacy.
+- **Add Medication!** Users manage their medications through a user-friendly interface. Users add medications by filling a form with fields for medication name, dosage (e.g., “500mg”), frequency (times per day), start and end dates, and selecting a health category from a dropdown list. Categories include Joints and Muscles, Gut Health, Skin, Eyes-Ears-Nose-Throat, Headaches and Dizziness, and Heart Health, ensuring consistent classification of medication purposes. They are able to record, edit, or remove medications they are taking to keep track of treatment accurately.
 
 - **Edit & Delete:** Users can update or remove medications they previously added. Forms are pre-populated with current data for ease of editing. Deletions prompt confirmation to prevent accidental loss.
 
-Medication entries are sorted by creation date, showing the newest first for quick access to recent records.
+#### Features
+
+- CreateView (MedicationCreate) allows logged-in users to add new medications.
+
+- UpdateView (MedicationUpdate) allows users to edit only their own medications (or admins).
+
+- DeleteView (MedicationDelete) allows users (or admins) to delete medications with confirmation.
+
+- Medication data includes:
+
+    - Name, Dosage, Frequency, Start/End Date, Category (dropdown), and optional Notes.
+
+- Uses custom-styled form widgets (Bootstrap) for a clean UI.
+
+### ⚠️  Reporting of side effects per medication
+
+User are able to log any side effects they experience for specific medication so that they can track how treatments affect them. Users are able categorize side effects from a predefined list to ensure consistency and ensure that reporting is made easier.
+
+#### Features
+
+- From the medication list page, users can report side effects using the SideEffectForm.
+
+- Each side effect is:
+
+    - Linked to a specific medication.
+
+    - Categorized via dropdown (SIDE_EFFECT_CATEGORIES): Nausea or Vomiting, Fatigue or Weakness, Rashes or Skin Issues, Mood Changes, Muscle or Joint Pain, Heart Palpitations or Chest Pain.
+
+    - Users provide detailed textual descriptions explaining their symptoms or experiences.
+
+- Reported side effects are stored with timestamps (reported_on) and associated with the reporting user.
+
+### View medication and side effect lists
+
+- The app displays medications in a paginated list, showing all relevant details. Each medication is tied to the logged-in user, enforcing privacy, while also allowing quick access and monitoring.
+
+#### Features
+
+- MedicationList displays:
+
+    - User’s medications (or all for superusers).
+
+    - Paginated with 6 items per page.
+
+    - Includes sorting by name, user (admin only), and date created.
+
+- Side effects are grouped and displayed under each medication using a dictionary (side_effects_by_med).
+
+### Delete side effect lists
+
+- Users are able to remove a previously reported side effect if it was added in error.
+
+#### Features
+
+- SideEffectDelete view provides deletion with access restricted to the original reporter.
+
+- Confirmation template ensures no accidental deletions.
+
+
+### Admin dashboard overview
+
+- Admin users have access to a dashboard that gives me insight into medication and side effect usage patterns across all users.
+
+#### Features
+
+- Access restricted via @staff_member_required.
+
+- Dashboard displays:
+
+    - Total number of medications and side effects. The dashboard displays overall counts of medications and side effects recorded.
+
+    - Top medication and side effects categories (global and by gender). Data is grouped by health categories for medications and side effect categories, showing the most common entries.
+
+- Uses raw SQL queries for performance and flexibility. The app uses optimized raw SQL queries to aggregate data efficiently, joining medication and side effect records with user profiles.
+
+- Admins are capable to analyze medication and side effect trends based on users' genders to understand how experiences vary. Data is grouped by Male, Female or Other. The visual grouping structure is prepared (gender_medication_data, gender_side_effect_data) and includes an “All” group for comparison across entire dataset.
 
 ---
 
-## ⚠️ Side Effect Reporting
+## Security and access control
 
-Users can report side effects experienced from medications via a dedicated form:
+Only authenticated users can:
 
-- **Side Effect Categories:** Side effects are selected from predefined categories such as Nausea or Vomiting, Fatigue or Weakness, Rashes or Skin Issues, Mood Changes, Muscle or Joint Pain, and Heart Palpitations or Chest Pain. This dropdown ensures standardized data input.
+    View the medication list.
 
-- **Detailed Descriptions:** Users provide detailed textual descriptions explaining their symptoms or experiences.
+    Add, update, or delete medications and side effects.
 
-Side effects are linked to both the user and the specific medication. Reports are displayed grouped by medication on the medication list page. Users can delete their side effect entries with confirmation prompts, maintaining control over their data.
+Only superusers/admins can:
+
+    View and sort by username.
+
+    Access the admin dashboard.
+
+Permissions enforced via:
+
+    LoginRequiredMixin
+
+    UserPassesTestMixin
+
+    @login_required
+
+    @staff_member_required
+
+---
+
+## Additional Features and Possibilities
+
+### 🧬 User Profile Integration
+
+Gender, age, and country are stored in a UserProfile model (via OneToOneField).
+
+Enables demographic filtering (e.g., gender-based dashboard data).
+
+Future potential:
+
+    Localized medication advice.
+
+    Age-specific health recommendations.
+
+### 🌍 Country Data Support
+
+CountryField allows easy integration of internationalization (e.g., filter medication by region or create country-based analytics).
+
+### ✅ Future Suggestions
+
+Allow users to export their medication logs (PDF/CSV).
+
+Add reminders or alerts for medication schedules.
+
+Include file uploads (e.g., prescriptions, images of side effects).
+
+Allow doctor/caregiver roles to view assigned users' data.
+
+Make use of Django signals to automatically create user profiles on registration.
 
 ---
 
