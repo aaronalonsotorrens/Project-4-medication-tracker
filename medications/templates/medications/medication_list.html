@@ -6,7 +6,13 @@
 <link rel="stylesheet" href="{% static 'medications/css/medication_list.css' %}">
 
 <div class="container mt-5">
-    <h1 class="text-center mb-4">My Medications</h1>
+    <h1 class="text-center mb-4">
+        {% if request.user.is_staff %}
+            User Medications
+        {% else %}
+            My Medications
+        {% endif %}
+    </h1>
 
     <div class="text-end mb-3">
         <a href="{% url 'medication_create' %}" class="btn btn-success">➕ Add Medication</a>
