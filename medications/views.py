@@ -10,7 +10,6 @@ from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db import connection
 
-@login_required
 def home_page_view(request):
     return render(request, 'medications/index.html')
 
@@ -41,10 +40,15 @@ class MedicationList(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         context['side_effect_form'] = SideEffectForm()
 
-        # Side effects grouped by medication for logged-in user
-        user_side_effects = SideEffect.objects.filter(user=self.request.user)
+        # Show all side effects if admin, else only user's
+        if self.request.user.is_superuser:
+            side_effects = SideEffect.objects.all()
+        else:
+            side_effects = SideEffect.objects.filter(user=self.request.user)
+
+        # Group side effects by medication ID
         effects_by_med = {}
-        for effect in user_side_effects:
+        for effect in side_effects:
             effects_by_med.setdefault(effect.medication.id, []).append(effect)
 
         context['side_effects_by_med'] = effects_by_med
