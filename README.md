@@ -41,6 +41,54 @@ This project is ideal for individuals seeking a straightforward, user-friendly t
 
 ## 📄 Pages & features
 
+### 🧭 Navbar
+
+The application features a responsive and role-aware navigation bar present across all main user-facing pages. Key characteristics include:
+
+- Dynamic Links:
+Links in the navbar adjust based on the user’s authentication status:
+
+    - Logged-out users see: Login, Register.
+
+    - Logged-in users see: Medications, Logout, and optionally their username or profile link.
+
+    - Admin users see an additional link to the Admin Dashboard.
+
+- Styling:
+The navbar is styled using Bootstrap classes for responsiveness and includes clear visual cues for active pages.
+
+- Accessibility & UX:
+Mobile-friendly with a collapsible menu (navbar-toggler) and ARIA attributes for better screen reader support.
+
+<details>
+  <summary>Navbar</summary>
+
+![Index results](readme-docs/navbar.png)
+  </details>
+
+---
+
+### 🦶 Footer
+
+A consistent footer is displayed across all views with the following features:
+
+- Minimal Design:
+A simple, fixed (or sticky) footer that displays copyright.
+
+- Dynamic Year:
+Uses Django’s template tags or context processors to render the current year automatically.
+
+- Attribution & Branding (optional):
+You may include site name, developer credit, or links to external documentation (e.g., GitHub repo, API info).
+
+<details>
+  <summary>Footer</summary>
+
+![Index results](readme-docs/footer.png)
+  </details>
+
+---
+
 ### 🏠 Home Page
 
 The home page is accessible to all users, including those not logged in. It provides an overview of the application's purpose and features, encouraging users to register or log in to access full functionality. It offers detailed information about the application's benefits and how it assists users in managing their medications effectively.
@@ -51,6 +99,24 @@ The home page is accessible to all users, including those not logged in. It prov
 
 - Access control is enforced through LoginRequiredMixin and @login_required.
 
+<details>
+  <summary>Home Page</summary>
+
+![Index results](readme-docs/home_page.png)
+  </details>
+
+<details>
+  <summary>Home Page User</summary>
+
+![Index results](readme-docs/home_page_user.png)
+  </details>
+
+<details>
+  <summary>Home Page Admin</summary>
+
+![Index results](readme-docs/home_page_admin.png)
+  </details>
+
 ---
 
 ## 👤 User Management
@@ -59,19 +125,65 @@ The home page is accessible to all users, including those not logged in. It prov
 
 New users register with a comprehensive signup form extending Django Allauth’s default signup by requiring first name, last name, gender, age, and country of residence. Gender is selected from predefined choices: Male, Female, or Other. Country selection leverages the `django-countries` package, presenting a dropdown list of countries for standardized input. Age is entered as a positive integer. These fields are saved in an associated `UserProfile` model linked to the user account.
 
+<details>
+  <summary>Signup</summary>
+
+![Index results](readme-docs/signup_page.png)
+  </details>
+
 ### Login  
 Users log in using their email and password credentials. Validation ensures secure authentication with appropriate error feedback.
 
-### Profile Page  
-Once logged in, users access their profile page displaying personal info alongside a list of their current medications. Profiles can be edited to update demographic info or account details.
+<details>
+  <summary>Login</summary>
+
+![Index results](readme-docs/signin_page.png)
+  </details>
+
+### Logout  
+Authenticated users can securely log out via the navigation bar. When clicked, a confirmation prompt ensures the user truly intends to sign out, helping to prevent accidental logouts. Upon confirmation, the session ends and the user is redirected to the homepage,
+
+<details>
+  <summary>Logout</summary>
+
+![Index results](readme-docs/signout_page.png)
+  </details>
 
 ---
 
 ## 💊 Medication page
 
+The Medication List page serves as the central hub where users can view all medications they have added. Each entry displays key details such as name, dosage, frequency, and treatment duration. Users can also report side effects, edit or delete medications, and view grouped side effects per medication. Admins can see all users' medications, while regular users only see their own.
+
+<details>
+  <summary>Medication user</summary>
+
+![Index results](readme-docs/medication_user.png)
+  </details>
+
+<details>
+  <summary>Medication admin</summary>
+
+![Index results](readme-docs/medication_admin.png)
+  </details>
+
+<details>
+  <summary>Medication pagination</summary>
+
+![Index results](readme-docs/medication_pagination.png)
+  </details>
+
 ### 💊 Create, update and delete medications
 
 - **Add Medication!** Users manage their medications through a user-friendly interface. Users add medications by filling a form with fields for medication name, dosage (e.g., “500mg”), frequency (times per day), start and end dates, and selecting a health category from a dropdown list. Categories include Joints and Muscles, Gut Health, Skin, Eyes-Ears-Nose-Throat, Headaches and Dizziness, and Heart Health, ensuring consistent classification of medication purposes. They are able to record, edit, or remove medications they are taking to keep track of treatment accurately.
+
+<details>
+  <summary>Add Medication</summary>
+
+![Index results](readme-docs/add_medication.png)
+  </details>
+
+---
 
 - **Edit & Delete:** Users can update or remove medications they previously added. Forms are pre-populated with current data for ease of editing. Deletions prompt confirmation to prevent accidental loss.
 
@@ -133,6 +245,7 @@ User are able to log any side effects they experience for specific medication so
 
 - Confirmation template ensures no accidental deletions.
 
+---
 
 ### Admin dashboard overview
 
@@ -148,9 +261,33 @@ User are able to log any side effects they experience for specific medication so
 
     - Top medication and side effects categories (global and by gender). Data is grouped by health categories for medications and side effect categories, showing the most common entries.
 
+<details>
+  <summary>Admin Dashboard Medications</summary>
+
+![Index results](readme-docs/medication_pie_chart.png)
+  </details>
+
+<details>
+  <summary>Admin Dashboard Sideffect</summary>
+
+![Index results](readme-docs/sideeffect_pie_chart.png)
+  </details>
+
 - Uses raw SQL queries for performance and flexibility. The app uses optimized raw SQL queries to aggregate data efficiently, joining medication and side effect records with user profiles.
 
 - Admins are capable to analyze medication and side effect trends based on users' genders to understand how experiences vary. Data is grouped by Male, Female or Other. The visual grouping structure is prepared (gender_medication_data, gender_side_effect_data) and includes an “All” group for comparison across entire dataset.
+
+<details>
+  <summary>Admin Dashboard Filter</summary>
+
+![Index results](readme-docs/medication_pie_chart_female.png)
+  </details>
+
+<details>
+  <summary>Admin Dashboard Filter</summary>
+
+![Index results](readme-docs/sideeffect_pie_chart_female.png)
+  </details>
 
 ---
 
@@ -287,29 +424,29 @@ Wireframes were created in Uiwizard. They were used for initial planning of temp
 
 HTML was validated by copying the page source and pasting into the validator.
 
-- <details>
-  <summary>Index Results</summary>
+<details>
+<summary>Index Results</summary>
 
 ![Index results](readme-docs/testing/index_page_html_validation.png)
-  </details>
+</details>
 
-- <details>
-  <summary>Add Medication Results</summary>
+<details>
+<summary>Add Medication Results</summary>
 
 ![Index results](readme-docs/testing/add_medication_html_validation.png)
-  </details>
+</details>
 
-- <details>
-  <summary>View Medication Results</summary>
+<details>
+<summary>View Medication Results</summary>
 
 ![Index results](readme-docs/testing/view_medication_html_validation.png)
-  </details>
+</details>
 
-- <details>
-  <summary>Signup Results</summary>
+<details>
+<summary>Signup Results</summary>
 
 ![Index results](readme-docs/testing/signup_html_validation.png)
-  </details>
+</details>
 
 ## 🧠 Models Overview
 
