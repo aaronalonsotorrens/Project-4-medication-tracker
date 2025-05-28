@@ -378,13 +378,50 @@ This rich, dynamic dashboard supports better monitoring and informed decision-ma
 
 - **User Experience:** Pagination, dropdown menus, and confirmation prompts ensure ease of use and prevent accidental data loss. Side effects are displayed grouped by medication for context.
 
-
 ---
 
-## 🗂️ Project Structure Highlights
+## 🎨 Project Design
+This project combines clean visual design with full CRUD functionality to ensure an intuitive and user-friendly experience.
 
-```
-```
+### 🛠 CRUD Functionality
+The system is designed around standard Create, Read, Update, and Delete (CRUD) operations:
+
+- Users can create and manage medications and report side effects.
+
+- All entries can be viewed in list format, filtered and grouped for clarity.
+
+- Items can be updated or deleted directly from the interface, with appropriate permission checks to ensure data integrity.
+
+### 🌈 Color Scheme
+- A minimal and accessible color palette is used, prioritizing readability and contrast.
+
+- Bootstrap's default theme is extended with subtle custom styling for buttons, alerts, and form elements.
+
+### 🔤 Typography
+- The project uses Bootstrap’s base typography, which provides clean, responsive, and legible text styling across all devices.
+
+- Headings and body text are clearly distinguished, with consistent font sizes and weights.
+
+- Placeholders and form hints use smaller, muted text for subtle guidance without clutter.
+
+### 🖼 Layout & Responsiveness
+- The layout is mobile-first and fully responsive, built using Bootstrap’s grid system.
+
+- Forms and lists resize smoothly across screen sizes — from phones to desktops.
+
+- Navigation and tables adapt gracefully to small screens, maintaining usability.
+
+### 🧭 UI Components
+Common UI patterns are used to improve familiarity, including:
+
+- A sticky navbar.
+
+- Consistent form design.
+
+- Flash messages (e.g., success/error alerts).
+
+- Dropdowns for selecting categories.
+
 ---
 
 ## Wireframes
@@ -418,7 +455,6 @@ Wireframes were created in Uiwizard. They were used for initial planning of temp
 ---
 
 # Testing
-
 
 ## [HTML Validator](https://validator.w3.org/)
 
@@ -536,18 +572,4 @@ def dashboard(request):
 
 ---
 
-## 📸 Screenshot
 
-![Dashboard Preview](your-screenshot-path.png)
-
----
-
-## 📝 License
-
-MIT License. See `LICENSE` for details.
-
----
-
-## 🙌 Acknowledgments
-
-Thanks to the Django and Chart.js communities for providing the tools that made this project possible.
