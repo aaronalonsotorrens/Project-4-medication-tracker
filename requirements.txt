@@ -2,9 +2,11 @@ asgiref==3.8.1
 certifi==2025.4.26
 cffi==1.17.1
 charset-normalizer==3.4.2
+cloudinary==1.36.0
 cryptography==44.0.3
 defusedxml==0.7.1
 dj-database-url==2.3.0
+dj3-cloudinary-storage==0.0.6
 Django==5.2
 django-allauth==0.57.2
 django-countries==7.6.1
@@ -18,7 +20,8 @@ python3-openid==3.2.0
 requests==2.32.3
 requests-oauthlib==2.0.0
 setuptools==78.1.0
+six==1.17.0
 sqlparse==0.5.3
 typing_extensions==4.13.2
-urllib3==2.4.0
+urllib3==1.26.20
 whitenoise==6.9.0
