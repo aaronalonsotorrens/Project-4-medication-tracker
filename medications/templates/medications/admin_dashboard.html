@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block meta_description %}
+Admin dashboard with analytics of medication and side effect trends by gender — MedTracker Insights.
+{% endblock %}
+
 {% block content %}
 <div class="container dashboard-container mt-4">
     <h2 class="mb-4">📊 Admin Dashboard</h2>
@@ -26,7 +30,7 @@
 
     <div class="d-flex align-items-center justify-content-between mb-3">
         <h4 class="mb-0">Filter by Gender:</h4>
-        <select id="genderSelect" class="form-select" style="width: 200px;">
+        <select id="genderSelect" class="form-select" style="width: 200px;" data-selected-gender="{{ selected_gender }}">
             {% for gender in genders %}
             <option value="{{ gender }}" {% if selected_gender == gender %}selected{% endif %}>{{ gender }}</option>
             {% endfor %}
@@ -44,87 +48,13 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
 
+<!-- Expose data to JS -->
 <script>
-const medCtx = document.getElementById('medCategoryChart').getContext('2d');
-const sideEffectCtx = document.getElementById('sideEffectChart').getContext('2d');
-
-const genderMedicationData = {{ gender_medication_data|safe }};
-const genderSideEffectData = {{ gender_side_effect_data|safe }};
-
-let medChart = null;
-let sideEffectChart = null;
-
-function renderCharts(gender) {
-    const medData = genderMedicationData[gender] || genderMedicationData["All"];
-    const seData = genderSideEffectData[gender] || genderSideEffectData["All"];
-
-    // Destroy old charts if exist
-    if (medChart) medChart.destroy();
-    if (sideEffectChart) sideEffectChart.destroy();
-
-    // Medication Categories Chart
-    medChart = new Chart(medCtx, {
-        type: 'pie',
-        data: {
-            labels: medData.labels,
-            datasets: [{
-                label: `Medications - ${gender}`,
-                data: medData.counts,
-                backgroundColor: ['#007bff', '#6610f2', '#6f42c1', '#e83e8c', '#fd7e14', '#20c997'],
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    position: 'top',
-                },
-                datalabels: {
-                    formatter: (value, ctx) => {
-                        let sum = ctx.chart.data.datasets[0].data.reduce((a,b) => a+b, 0);
-                        return (value * 100 / sum).toFixed(1) + '%';
-                    },
-                    color: '#fff',
-                    font: { weight: 'bold' }
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
-
-    // Side Effects Chart
-    sideEffectChart = new Chart(sideEffectCtx, {
-        type: 'pie',
-        data: {
-            labels: seData.labels,
-            datasets: [{
-                label: `Side Effects - ${gender}`,
-                data: seData.counts,
-                backgroundColor: ['#dc3545', '#ffc107', '#28a745', '#17a2b8', '#6c757d', '#343a40'],
-            }]
-        },
-        options: {
-            plugins: {
-                datalabels: {
-                    formatter: (value, ctx) => {
-                        let sum = ctx.chart.data.datasets[0].data.reduce((a,b) => a+b, 0);
-                        return (value * 100 / sum).toFixed(1) + '%';
-                    },
-                    color: '#fff',
-                    font: { weight: 'bold' }
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
-}
-
-// Event listener for gender selection change
-document.getElementById('genderSelect').addEventListener('change', function() {
-    renderCharts(this.value);
-});
-
-// Initial render on page load
-renderCharts("{{ selected_gender }}");
+    window.genderMedicationData = {{ gender_medication_data|safe }};
+    window.genderSideEffectData = {{ gender_side_effect_data|safe }};
 </script>
+
+<!-- External JS -->
+<script src="{% static 'js/script.js' %}"></script>
 
 {% endblock %}
