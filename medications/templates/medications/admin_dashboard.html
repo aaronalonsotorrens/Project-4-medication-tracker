@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
-{% endblock %}
 
 {% block content %}
 <div class="container dashboard-container mt-4">
@@ -12,7 +9,7 @@
         <div class="col-md-6">
             <div class="card text-white bg-primary mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Total Medications</h5>
+                    <h5 class="card-title dashboard-card-title">Total Medications</h5>
                     <p class="card-text fs-3">{{ total_meds }}</p>
                 </div>
             </div>
@@ -20,7 +17,7 @@
         <div class="col-md-6">
             <div class="card text-white bg-danger mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Total Side Effects</h5>
+                    <h5 class="card-title dashboard-card-title">Total Side Effects</h5>
                     <p class="card-text fs-3">{{ total_side_effects }}</p>
                 </div>
             </div>
