@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/form.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
+<div id="med-form-page" class="container mt-5">
     {% if view.object.pk %}
         <h1 class="mb-4 text-center">Update Medication</h1>
     {% else %}
