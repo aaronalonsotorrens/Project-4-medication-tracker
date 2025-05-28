@@ -43,15 +43,15 @@
                     <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">{{ medication.name }}</h5>
-                            <p class="card-text">
+                            <div class="card-text">
                                 {% if request.user.is_superuser %}
                                     <p><strong>Added by:</strong> {{ medication.user.username }}</p>
                                 {% endif %}
-                                <strong>Dosage:</strong> {{ medication.dosage }}<br>
-                                <strong>Frequency:</strong> {{ medication.frequency }} times/day<br>
-                                <strong>Start:</strong> {{ medication.start_date }}<br>
-                                <strong>End:</strong> {{ medication.end_date }}
-                            </p>
+                                <p><strong>Dosage:</strong> {{ medication.dosage }}</p>
+                                <p><strong>Frequency:</strong> {{ medication.frequency }} times/day</p>
+                                <p><strong>Start:</strong> {{ medication.start_date }}</p>
+                                <p><strong>End:</strong> {{ medication.end_date }}</p>
+                            </div>
                             <a href="{% url 'medication_update' medication.id %}" class="btn btn-sm btn-primary">✏️ Edit</a>
                             <a href="{% url 'medication_delete' medication.id %}" class="btn btn-sm btn-danger">🗑️ Delete</a>
 
