@@ -1,7 +1,7 @@
 from django.test import TestCase
-from .forms import MedicationForm, SideEffectForm
+from medications.forms import MedicationForm, SideEffectForm
 from django.contrib.auth.models import User
-from .models import Medication
+from medications.models import Medication
 
 
 class TestMedicationForm(TestCase):

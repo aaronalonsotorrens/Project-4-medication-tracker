@@ -12,7 +12,7 @@ Medication data is securely stored and managed through the backend, built with D
 
 This project is ideal for individuals seeking a straightforward, user-friendly tool to support their health routine and medication adherence.
 
-![Medtracker](readme-docs/amiresponsive.webp)
+![Medtracker](readme-docs/website_image.png)
 
 ---
 
@@ -382,38 +382,6 @@ Make use of Django signals to automatically create user profiles on registration
 
 ---
 
-## 📊 Admin Dashboard & Analytics
-
-Administrators access a comprehensive dashboard presenting aggregated insights on medication usage and side effect reports:
-
-- **Totals & Trends:** The dashboard displays overall counts of medications and side effects recorded.
-
-- **Category Breakdown:** Data is grouped by health categories for medications and side effect categories, showing the most common entries.
-
-- **Demographic Filters:** Leveraging extended user profile data (gender, age, country), the dashboard offers filtering options by gender (Male, Female, Other, All). This segmentation provides targeted analytics to uncover trends or issues specific to demographic groups.
-
-- **Raw SQL Queries:** The app uses optimized raw SQL queries to aggregate data efficiently, joining medication and side effect records with user profiles.
-
-This rich, dynamic dashboard supports better monitoring and informed decision-making to improve user health management.
-
----
-
-## ⚙️ Technical Details
-
-- **Models:** The `Medication` model stores medication details, user linkage, and category selections. The `SideEffect` model links side effects to medications and users, with categorized types and descriptions. User demographic data is stored separately in a `UserProfile` model extending Django’s default User.
-
-- **Forms:** Custom forms leverage Django’s forms framework with styled widgets for consistent UI:
-
-  - `CustomSignupForm` extends Django Allauth signup, adding fields for first name, last name, gender (dropdown), age, and country (using django-countries).
-  - `MedicationForm` handles medication data entry with input validation and dropdowns for categories.
-  - `SideEffectForm` manages side effect reporting, with dropdown selection and a textarea for detailed descriptions.
-
-- **Views:** Class-based views handle listing, creating, updating, and deleting medications with user access control. Side effect reporting and deletion include POST handling with messages for success/failure feedback. The admin dashboard view uses raw SQL and staff-only access restrictions.
-
-- **User Experience:** Pagination, dropdown menus, and confirmation prompts ensure ease of use and prevent accidental data loss. Side effects are displayed grouped by medication for context.
-
----
-
 ## 🎨 Project Design
 
 This project combines clean visual design with full CRUD functionality to ensure an intuitive and user-friendly experience.
@@ -522,6 +490,28 @@ GitHub Projects was used in part for the planning of this website to create and 
 
 ---
 
+# Technologies Used
+
+- [HTML5](https://en.wikipedia.org/wiki/HTML5) – Markup language for structuring content.
+- [CSS3](https://en.wikipedia.org/wiki/CSS) – Styling language; limited use due to Bootstrap.
+- [Bootstrap](https://getbootstrap.com/) – Frontend framework for responsive design.
+- [JavaScript](https://www.javascript.com/) – For interactive elements (light use, possibly inline).
+- [Python 3](https://www.python.org/) – Main programming language.
+- [Django 3.2](https://www.djangoproject.com/) – Web framework used for backend development.
+  - [Django Crispy Forms](https://pypi.org/project/django-crispy-forms/) – Enhanced form rendering.
+  - [Crispy Bootstrap5](https://pypi.org/project/crispy-bootstrap5/) – Bootstrap 5 template pack.
+  - [Django Widget Tweaks](https://pypi.org/project/django-widget-tweaks/) – For customizing form field rendering.
+  - [Coverage](https://github.com/nedbat/coveragepy/tree/6.5.0): for measuring code coverage of Python tests.
+- [Cloudinary](https://cloudinary.com/) – For hosting uploaded media (if used).
+- [Git](https://git-scm.com/) – Version control.
+- [GitHub](https://github.com/) – To host the repository.
+- [Gitpod](https://www.gitpod.io/) – Online IDE used for development.
+- [Heroku](https://www.heroku.com/) – Deployment platform.
+- [Google Fonts](https://fonts.google.com/) – For custom fonts.
+- [Font Awesome](https://fontawesome.com/) – Icon set used in UI.
+
+---
+
 # Testing
 
 ## [HTML Validator](https://validator.w3.org/)
@@ -557,6 +547,8 @@ There were 4 warnings related to CountryField django package.
 
 </details>
 
+---
+
 ## [CSS Validator](https://jigsaw.w3.org/css-validator/)
 
 The CSS for this project was validated using a standard CSS validator, which reported no errors. While the site’s appearance is largely shaped by Bootstrap’s responsive utility classes and Django’s built-in features, a standalone CSS file was included to replicate the existing layout. This was added in part due to uncertainty around the expected level of custom CSS, and to demonstrate my ability to maintain consistent, structured styling where required. That said, the extensive use of Bootstrap and Django utilities enabled the creation of a clean, functional, and visually distinctive interface with minimal reliance on traditional CSS, something I was genuinely excited to explore in this project. Making the most of Bootstrap allowed for a modern, streamlined layout, reducing redundant styling while achieving a user experience that feels both personal and polished.
@@ -577,6 +569,8 @@ To further support the project’s CSS requirements, a small amount of custom st
 
 </details>
 
+---
+
 ## JavaScript Testing
 
 JSHint was used for validating the JavaScript.
@@ -588,9 +582,13 @@ JSHint was used for validating the JavaScript.
 
 </details>
 
+---
+
 ## Python Testing
 
 The project was tested for pep8 compliance using pycodestyle. [autopep8](https://pypi.org/project/autopep8/) was used to aid compliance. At time of writing no problems or errors were found.
+
+---
 
 ## Lighthouse
 
@@ -645,6 +643,42 @@ The site was tested using Lighthouse in Chrome DevTools to check performance, ac
 
 </details>
 
+---
+
+## Automated Testing
+
+This project includes automated tests for the medications app, ensuring key components function correctly and reliably. The tests are written using Django’s testing framework and cover the following areas:
+
+- Form Validation Tests
+    - MedicationForm:
+
+        - Validates that the form accepts correct and complete data.
+
+        - Ensures the form rejects submissions with missing or invalid fields.
+
+    - SideEffectForm:
+
+        - Validates correct data inputs.
+
+        - Checks that forms with empty or invalid data are rejected.
+
+- View Tests
+    - Medication List View:
+
+        - Confirms the view loads successfully for authenticated users.
+
+        - Checks the correct template is used to render the medication list page.
+
+        - Verifies user login is required (via test setup with logged-in user).
+
+<details>
+<summary>Automated testing with coverage reports</summary>
+
+![Automated testing](readme-docs/testing/automated_testing.png)
+</details>
+
+---
+
 ## Manual Testing
 
 Below the steps for manual testing of the site have been arranged into tables.
@@ -652,30 +686,142 @@ Below the steps for manual testing of the site have been arranged into tables.
 <details>
 <summary>Manual testing</summary>
 
-![Testing Registration & Login](readme-docs/testing/manual_testing.png)
+![Manual testing](readme-docs/testing/manual_testing.png)
 </details>
 
 <details>
 <summary>User story testing</summary>
 
-![Testing Registration & Login](readme-docs/testing/user_story_testing.png)
+![Manual testing](readme-docs/testing/user_story_testing.png)
 </details>
 
 ---
 
-## 🔐 Access Control
+## Deployment
+### Steps to deploy site using Heroku:
 
-- **Dashboard** is only visible to superusers.
-- Users can only manage their own medications and side effects.
-- Superusers can view all medications and view extracted information in the dashboard.
+- Ensure that `gunicorn`, `dj_database_url`, `psycopg2`, and `dj3-cloudinary-storage` are installed
+- On the Heroku dashboard, click **New** then select **Create new app**
+  - Enter a unique app name — this will be added to `ALLOWED_HOSTS` in your Django settings
+  - Select the appropriate region
+  - Click **Create app**
+- Navigate to the **Resources** tab:
+  - Search for **postgres** in the add-ons search bar and select **Heroku Postgres**
+  - Click **Submit Order Form**
+- Go to the **Settings** tab:
+  - Scroll down to **Config Vars** and click **Reveal Config Vars**
+  - `DATABASE_URL` will be automatically set after adding Heroku Postgres — copy this value for your project
+  - Add a new config var for `SECRET_KEY` — generate your own or use a Django secret key generator
+  - Add a new config var for `CLOUDINARY_URL` — copy the "API Environment variable" from your Cloudinary dashboard, but remove the `CLOUDINARY_URL=` prefix
+  - Add a new config var named `DISABLE_COLLECTSTATIC` with value `1` — this will be removed before final deployment
+- In your project directory:
+  - Create a new file named `env.py` at the top-level
+  - Inside `env.py`:
+    - Import os
+    - Add 'os.environ["DATABASE_URL"] = "Enter the DATABASE_URL from the Heroku app here"'
+    - Add 'os.environ["SECRET_KEY"] = "Enter your new secret key here"'
+    - Add 'os.environ["CLOUDINARY_URL"] = "Enter your CLOUDINARY_URL as in the Heroku app here"'
+```
+import os
+
+  os.environ['DATABASE_URL'] = 'postgres://exampledatabaseurl'
+  os.environ['SECRET_KEY'] = 'examplesecretkey'
+  os.environ['CLOUDINARY_URL'] = 'cloudinary://examplecloudinaryurl'
+  ```
+  - If not already present, create a .gitignore file and add env.py to it
+
+- In your project, in settings.py:
+  - Import os
+  - Import dj_database_url
+  - Import env file
+  ```
+  import os
+  import dj_database_url
+  if os.path.isfile('env.py'):
+      import env
+  ```
+  - Replace the existing SECRET_KEY with:
+  ```
+  SECRET_KEY = os.environ.get('SECRET_KEY')
+  ```
+  - Replace or comment out the old DATABASES configuration and add:
+	DATABASES = {
+			'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+			}
+  ```
+  DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    }
+  ```
+  - Update your ALLOWED_HOSTS to include your Heroku app name and localhost:
+  ```
+  ALLOWED_HOSTS = ['example-heroku-app-name.herokuapp.com', 'localhost']
+  ```
+  - Add 'cloudinary_storage' above 'django.contrib.staticfiles' and 'cloudinary' below it in INSTALLED_APPS:
+  ```
+  ...
+  'cloudinary_storage',
+  'django.contrib.staticfiles',
+  'cloudinary',
+  ...
+  ```
+  - Configure static and media files to use Cloudinary:
+  ```
+    STATIC_URL = '/static/'
+	STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+	STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+	STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+	MEDIA_URL = '/media/'
+	DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage' --> If you have media to store
+  ```
+  - Run 'python3 manage.py collectstatic' to collect static files
+- In your project:
+  - Create a Procfile in the top level directory and add 'web: gunicorn project_name.wsgi' to tell 
+  ```
+  web: gunicorn project_name.wsgi
+  ```
+  - Create a requirements file with 'pip3 freeze --local > requirements.txt' for Heroku to install required packages
+  ```
+  pip3 freeze --local > requirements.txt
+  ```
+  - Make migrations with 'python3 manage.py migrate'
+  ```
+  python3 manage.py migrate
+  ```
+- Commit and push all changes to your GitHub repository
+- Before the final deployment:
+    - Set DEBUG = False in your settings.py
+    - Remove the DISABLE_COLLECTSTATIC config var from Heroku
+- On the Heroku dashboard:
+    - Go to the Deploy tab
+    - Choose GitHub and connect your GitHub account if not connected
+    - Search for your repository and click Connect
+    - Scroll down to deployment options:
+        - Enable automatic deploys if desired, to deploy on every push to GitHub
+        - Or deploy manually by selecting the branch and clicking Deploy Branch
+    - Heroku will build your app
+- After deployment completes:
+    - Click Open app at the top of the page to view your live site
 
 ---
 
-## 🧩 Future Improvements
+## Acknowledgements
 
-- Add date filtering to dashboard
-- Export insights to CSV
-- Introduce charts for medication adherence
-- Integrate advanced filtering or user-level analytics
+I would like to express my gratitude to the following for their support and resources during the development of this project:
+
+- **[Code Institute](https://codeinstitute.net/)** – For providing a structured learning environment and valuable tutoring throughout the project.
+- **[Django Documentation](https://docs.djangoproject.com/)** – For clear and detailed references that guided the backend development.
+- **[Bootstrap Documentation](https://getbootstrap.com/docs/)** – For the powerful and responsive frontend components that shaped the UI.
+- **[Stack Overflow](https://stackoverflow.com/)** – For being an essential resource in resolving issues and exploring best practices.
+- **[W3Schools](https://www.w3schools.com/)** and **[MDN Web Docs](https://developer.mozilla.org/)** – For reliable explanations of HTML, CSS, and JavaScript concepts.
+- **[Font Awesome](https://fontawesome.com/)** – For icon assets that enhanced the visual design and usability.
+
+A special thank you to my mentor Brian Macharia for their constructive feedback and encouragement.
+
+- * Google Sheets - Project draft
+  * [Google Sheet](https://docs.google.com/spreadsheets/d/1_4eTeUY9SJVy2AsdiYDelQeH30RATD8YRc7OqEIjHqw/edit?usp=sharing)
+- * Google Sheets - Project manual testing
+  * [Google Sheet](https://docs.google.com/spreadsheets/d/1sESh-80ziwv5ejT-GULQ0venPfS0Z_QnpMplK91KGkw/edit?usp=sharing)
 
 ---
