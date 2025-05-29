@@ -44,7 +44,7 @@ else:
 # Security
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = False
-ALLOWED_HOSTS = ['project-4-medication-tracker.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['project-4-medication-tracker.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Installed apps
 INSTALLED_APPS = [
@@ -112,7 +112,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.codeinstitute-ide.net/",
+    "https://project-4-medication-tracker.herokuapp.com", 
     "https://*.herokuapp.com",
     "http://localhost:8000",
     "http://127.0.0.1:8000"
