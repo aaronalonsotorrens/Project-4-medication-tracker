@@ -23,7 +23,7 @@ class MedicationList(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         # Admins see all, others see only their meds
         queryset = Medication.objects.all() if self.request.user.is_superuser else Medication.objects.filter(user=self.request.user)
-        queryset = queryset.select_related('user')  # Improve query efficiency
+        queryset = queryset.select_related('user').prefetch_related('side_effects')  # Improve query efficiency
 
         # Sorting logic
         sort_by = self.request.GET.get('sort_by')
@@ -40,16 +40,11 @@ class MedicationList(LoginRequiredMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         context['side_effect_form'] = SideEffectForm()
 
-        # Show all side effects if admin, else only user's
-        if self.request.user.is_superuser:
-            side_effects = SideEffect.objects.all()
-        else:
-            side_effects = SideEffect.objects.filter(user=self.request.user)
-
-        # Group side effects by medication ID
         effects_by_med = {}
-        for effect in side_effects:
-            effects_by_med.setdefault(effect.medication.id, []).append(effect)
+        for med in context['medications']:
+            for effect in med.side_effects.all():  # Uses prefetched data
+                if self.request.user.is_superuser or effect.user == self.request.user:
+                    effects_by_med.setdefault(med.id, []).append(effect)
 
         context['side_effects_by_med'] = effects_by_med
         return context

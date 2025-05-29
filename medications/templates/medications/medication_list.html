@@ -23,115 +23,120 @@ View and manage your list of medications and side effects with MedTracker — tr
     {% endif %}
 
     <div class="card shadow-sm p-4 mb-5 bg-white rounded">
-   
-    <!-- Sorting Form -->
-    <form method="get" class="mb-3">
-        <label for="sort_by" class="form-label">Sort by:</label>
-        <select name="sort_by" id="sort_by" class="form-select d-inline-block w-auto">
-            <option value="">-- Choose --</option>
-            <option value="name" {% if request.GET.sort_by == 'name' %}selected{% endif %}>Medication Name</option>
-            {% if request.user.is_superuser %}
-                <option value="user" {% if request.GET.sort_by == 'user' %}selected{% endif %}>User</option>
-            {% endif %}
-            <option value="date_created" {% if request.GET.sort_by == 'date_created' %}selected{% endif %}>Date Created (Oldest)</option>
-        </select>
-        <button type="submit" class="btn btn-secondary btn-sm ms-2">Apply</button>
-    </form>
+
+        <!-- Sorting Form -->
+        <form method="get" class="row g-2 align-items-center mb-3">
+            <div class="col-auto">
+                <label for="sort_by" class="col-form-label">Sort by:</label>
+            </div>
+            <div class="col-auto">
+                <select name="sort_by" id="sort_by" class="form-select">
+                    <option value="">-- Choose --</option>
+                    <option value="name" {% if request.GET.sort_by == 'name' %}selected{% endif %}>Medication Name</option>
+                    {% if request.user.is_superuser %}
+                        <option value="user" {% if request.GET.sort_by == 'user' %}selected{% endif %}>User</option>
+                    {% endif %}
+                    <option value="date_created" {% if request.GET.sort_by == 'date_created' %}selected{% endif %}>Date Created</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary btn-sm">Apply</button>
+            </div>
+        </form>
 
         {% if medications %}
             <div class="row">
                 {% for medication in medications %}
-                <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
+                <div class="col-md-6 mb-4">
+                    <article class="card h-100 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">{{ medication.name }}</h5>
-                            <div class="card-text">
+                            <ul class="list-unstyled">
                                 {% if request.user.is_superuser %}
-                                    <p><strong>Added by:</strong> {{ medication.user.username }}</p>
+                                    <li><strong>Added by:</strong> {{ medication.user.username }}</li>
                                 {% endif %}
-                                <p><strong>Dosage:</strong> {{ medication.dosage }}</p>
-                                <p><strong>Frequency:</strong> {{ medication.frequency }} times/day</p>
-                                <p><strong>Start:</strong> {{ medication.start_date }}</p>
-                                <p><strong>End:</strong> {{ medication.end_date }}</p>
-                            </div>
-                            <a href="{% url 'medication_update' medication.id %}" class="btn btn-sm btn-primary">✏️ Edit</a>
-                            <a href="{% url 'medication_delete' medication.id %}" class="btn btn-sm btn-danger">🗑️ Delete</a>
+                                <li><strong>Dosage:</strong> {{ medication.dosage }}</li>
+                                <li><strong>Frequency:</strong> {{ medication.frequency }} times/day</li>
+                                <li><strong>Start:</strong> {{ medication.start_date }}</li>
+                                <li><strong>End:</strong> {{ medication.end_date }}</li>
+                            </ul>
 
-                            <!-- Side Effect Reporting Form -->
+                            <div class="d-flex gap-2 mb-3">
+                                <a href="{% url 'medication_update' medication.id %}" class="btn btn-sm btn-primary">✏️ Edit</a>
+                                <a href="{% url 'medication_delete' medication.id %}" class="btn btn-sm btn-danger">🗑️ Delete</a>
+                            </div>
+
                             {% if not request.user.is_staff %}
-                            <hr>
-                            <h5 class="mt-3 fw-bold">Report How You're Feeling</h5>
-                            <form method="post" action="{% url 'add_side_effect' medication.id %}">
-                                {% csrf_token %}
-                                {{ side_effect_form.as_p }}
-                                <button type="submit" class="btn btn-sm btn-warning mt-2">Report</button>
-                            </form>
+                            <!-- Report Side Effects -->
+                            <details>
+                                <summary class="fw-bold">Report How You're Feeling</summary>
+                                <form method="post" action="{% url 'add_side_effect' medication.id %}" class="mt-2">
+                                    {% csrf_token %}
+                                    {{ side_effect_form.as_p }}
+                                    <button type="submit" class="btn btn-sm btn-warning">Report</button>
+                                </form>
+                            </details>
                             {% endif %}
 
-                            <!-- Show Side Effects Reported by the User for This Medication -->
+                            <!-- Show Side Effects -->
                             {% with effects=side_effects_by_med|dict_get:medication.id %}
                                 {% if effects %}
-                                    <hr>
-                                    <h6>Your Reported Side Effects</h6>
-                                    <ul class="list-group list-group-flush">
+                                <details class="mt-3">
+                                    <summary class="fw-bold">Your Reported Side Effects</summary>
+                                    <ul class="list-group list-group-flush mt-2">
                                         {% for effect in effects %}
                                             <li class="list-group-item d-flex justify-content-between align-items-start">
                                                 <div>
                                                     <strong>{{ effect.get_category_display }}</strong>: {{ effect.description }}<br>
                                                     <small class="text-muted">Reported on {{ effect.reported_on|date:"Y-m-d H:i" }}</small>
                                                 </div>
-                                                <form method="post" action="{% url 'side_effect_delete' effect.id %}" style="margin: 0;">
+                                                <form method="post" action="{% url 'side_effect_delete' effect.id %}" class="ms-2">
                                                     {% csrf_token %}
                                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                                 </form>
                                             </li>
                                         {% endfor %}
                                     </ul>
+                                </details>
                                 {% endif %}
                             {% endwith %}
                         </div>
-                    </div>
+                    </article>
                 </div>
                 {% endfor %}
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        {% if page_obj.has_previous %}
-                            <li class="page-item">
-                                <a class="page-link" href="?{% if request.GET.sort_by %}sort_by={{ request.GET.sort_by }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
-                            </li>
-                        {% else %}
-                            <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                        {% endif %}
-                
-                        {% for num in page_obj.paginator.page_range %}
-                            {% if num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-                                {% if page_obj.number == num %}
-                                    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-                                {% else %}
-                                    <li class="page-item">
-                                        <a class="page-link" href="?{% if request.GET.sort_by %}sort_by={{ request.GET.sort_by }}&{% endif %}page={{ num }}">{{ num }}</a>
-                                    </li>
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                
-                        {% if page_obj.has_next %}
-                            <li class="page-item">
-                                <a class="page-link" href="?{% if request.GET.sort_by %}sort_by={{ request.GET.sort_by }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
-                            </li>
-                        {% else %}
-                            <li class="page-item disabled"><span class="page-link">Next</span></li>
-                        {% endif %}
-                    </ul>
-                </nav>
             </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center mt-4">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if request.GET.sort_by %}sort_by={{ request.GET.sort_by }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item {% if page_obj.number == num %}active{% endif %}">
+                                <a class="page-link" href="?{% if request.GET.sort_by %}sort_by={{ request.GET.sort_by }}&{% endif %}page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if request.GET.sort_by %}sort_by={{ request.GET.sort_by }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled"><span class="page-link">Next</span></li>
+                    {% endif %}
+                </ul>
+            </nav>
         {% else %}
             <p class="text-center">No medications found. Add a new one!</p>
         {% endif %}
     </div>
 </div>
-
 {% endblock %}
-
-
-
