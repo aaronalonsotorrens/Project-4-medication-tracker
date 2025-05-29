@@ -12,6 +12,8 @@ Medication data is securely stored and managed through the backend, built with D
 
 This project is ideal for individuals seeking a straightforward, user-friendly tool to support their health routine and medication adherence.
 
+![Medtracker](readme-docs/amiresponsive.webp)
+
 ---
 
 ## 👤 User Stories
