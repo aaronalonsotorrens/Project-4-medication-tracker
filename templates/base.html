@@ -51,6 +51,11 @@
                                 {% endif %}
                             </a>
                         </li>
+                        {% if user.is_superuser %}
+                        <li class="nav-item">
+                            <a href="{{ admin_dashboard_url }}" class="nav-link">Dashboard</a>
+                        </li>
+                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == logout_url %}active{% endif %}" href="{{ logout_url }}">Logout</a>
                         </li>
