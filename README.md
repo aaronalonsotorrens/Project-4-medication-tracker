@@ -502,6 +502,14 @@ GitHub Projects was used in part for the planning of this website to create and 
 
 </details>
 
+<details>
+<summary>Kanban board setting to public</summary>
+
+![Agile plan document](readme-docs/kanban_board_visible.png)
+
+
+</details>
+
 ---
 
 # Technologies Used
