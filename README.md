@@ -480,8 +480,37 @@ HTML was validated by copying the page source and pasting into the validator.
 
 <details>
 <summary>Signup Results</summary>
+There were 4 warnings related to CountryField django package.
 
 ![Index results](readme-docs/testing/signup_html_validation.png)
+</details>
+
+## [CSS Validator](https://jigsaw.w3.org/css-validator/)
+
+The CSS for this project was validated using a standard CSS validator, which reported no errors. While the site’s appearance is largely shaped by Bootstrap’s responsive utility classes and Django’s built-in features, a standalone CSS file was included to replicate the existing layout. This was added in part due to uncertainty around the expected level of custom CSS, and to demonstrate my ability to maintain consistent, structured styling where required. That said, the extensive use of Bootstrap and Django utilities enabled the creation of a clean, functional, and visually distinctive interface with minimal reliance on traditional CSS, something I was genuinely excited to explore in this project. Making the most of Bootstrap allowed for a modern, streamlined layout, reducing redundant styling while achieving a user experience that feels both personal and polished.
+
+To further support the project’s CSS requirements, a small amount of custom styling was applied specifically to the forms.html template. This stylesheet was also validated with zero errors and helped ensure that key presentation elements were met without compromising the project’s overall design approach.
+
+<details>
+<summary>CSS validations for forms.css</summary>
+
+![Index results](readme-docs/testing/form_css_validation.png)
+</details>
+
+<details>
+<summary>Results for style.css attached outside this project</summary>
+
+![Index results](readme-docs/testing/css_validation.png)
+</details>
+
+## JavaScript Testing
+
+JSHint was used for validating the JavaScript for the modals and email. 
+
+<details>
+<summary>Script js testing</summary>
+
+![Index results](readme-docs/testing/jsscript_jshint.png)
 </details>
 
 ## 🧠 Models Overview

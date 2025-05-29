@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class Medication(models.Model):
     HEALTH_CATEGORIES = [
         ('Joints', 'Joints and Muscles'),
@@ -12,7 +13,8 @@ class Medication(models.Model):
         ('Neuro', 'Headaches and Dizziness'),
         ('Cardio', 'Heart Health'),
     ]
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='medications')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='medications')
     name = models.CharField(max_length=100)
     dosage = models.CharField(max_length=50)
     frequency = models.IntegerField(help_text="Times per day")
@@ -27,7 +29,7 @@ class Medication(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.user.username})"
-    
+
 
 class SideEffect(models.Model):
     SIDE_EFFECT_CATEGORIES = [
@@ -38,7 +40,8 @@ class SideEffect(models.Model):
         ('Pain', 'Muscle or Joint Pain'),
         ('Cardio', 'Heart Palpitations or Chest Pain'),
     ]
-    medication = models.ForeignKey(Medication, related_name='side_effects', on_delete=models.CASCADE)
+    medication = models.ForeignKey(
+        Medication, related_name='side_effects', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.CharField(max_length=20, choices=SIDE_EFFECT_CATEGORIES)
     description = models.TextField()
@@ -46,7 +49,3 @@ class SideEffect(models.Model):
 
     def __str__(self):
         return f"Side effect for {self.medication.name} by {self.user.username}"
-    
-
-
-
