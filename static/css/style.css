@@ -1,0 +1,322 @@
+/* Base Typography and Body */
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    color: #1a1a1a; /* Darker base text */
+    background-color: #f8f9fa;
+    line-height: 1.6;
+    font-weight: 500; /* Slightly thicker than normal */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: #111; /* Very dark heading color */
+    margin-bottom: 1rem;
+}
+
+p, li, label, span, div {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    background-color: #ffffff;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+.card-text p {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Buttons */
+button, .btn {
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0a58ca;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #198754;
+    font-weight: 600;
+}
+
+.btn-success:hover {
+    background-color: #157347;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Form Styling */
+form label {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    color: #1a1a1a;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+    border-color: #80bdff;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+form p {
+    margin-bottom: 1rem;
+}
+
+/* Sorting Dropdown */
+form select.form-select {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 2rem;
+}
+
+.page-link {
+    border-radius: 6px;
+    font-weight: 600;
+    color: #0d6efd;
+}
+
+.page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+}
+
+/* Side Effect List */
+.list-group-item {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.list-group-item strong {
+    color: #111;
+}
+
+/* Add Medication Button */
+.text-end .btn-success {
+    font-size: 1rem;
+    padding: 8px 16px;
+}
+
+/* Footer */
+
+footer.footer {
+    background-color: #ffffff !important;
+    color: #212529;
+    border-top: 1px solid #dee2e6;
+}
+
+footer.footer .fab {
+    color: #495057;
+}
+
+/* Dashboard */
+
+.dashboard-card-title {
+    color: #ffffff;
+}
+
+/* Small Devices (≤576px, Mobile Phones) */
+@media (max-width: 576px) {
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+
+    .navbar {
+        z-index: 1030;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .btn, button {
+        width: 100%;
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-select,
+    form input,
+    form textarea {
+        font-size: 0.95rem;
+    }
+
+    .text-end,
+    .text-start {
+        text-align: center !important;
+    }
+
+    .list-group-item {
+        font-size: 0.9rem;
+    }
+
+    nav.navbar .navbar-text {
+        display: none;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+
+    .page-link {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+/* Medium Devices (577px–768px, Small Tablets) */
+@media (min-width: 577px) and (max-width: 768px) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    .btn, button {
+        font-size: 0.95rem;
+    }
+
+    .form-select,
+    form input,
+    form textarea {
+        font-size: 0.95rem;
+    }
+
+    .text-end .btn-success {
+        display: block;
+        width: 100%;
+    }
+
+    .list-group-item {
+        font-size: 0.95rem;
+    }
+}
+
+/* Large Devices (769px–992px, Tablets/Laptops) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .btn {
+        font-size: 1rem;
+        padding: 0.4rem 1.2rem;
+    }
+
+    .form-select,
+    form input,
+    form textarea {
+        font-size: 1rem;
+    }
+}
+
+/* Extra Large Devices (≥993px) — default applies, minimal override needed */
+@media (min-width: 993px) {
+    .btn {
+        min-width: 120px;
+    }
+
+    .form-select,
+    form input,
+    form textarea {
+        max-width: 400px;
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+    }
+}
