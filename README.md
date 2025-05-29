@@ -1,4 +1,3 @@
-
 # 💊 Django Medication Tracker
 
 Medication Tracker is a web app designed to help users manage and track their personal medication schedules with ease and reliability.
@@ -46,7 +45,7 @@ This project is ideal for individuals seeking a straightforward, user-friendly t
 The application features a responsive and role-aware navigation bar present across all main user-facing pages. Key characteristics include:
 
 - Dynamic Links:
-Links in the navbar adjust based on the user’s authentication status:
+  Links in the navbar adjust based on the user’s authentication status:
 
     - Logged-out users see: Login, Register.
 
@@ -55,15 +54,30 @@ Links in the navbar adjust based on the user’s authentication status:
     - Admin users see an additional link to the Admin Dashboard.
 
 - Styling:
-The navbar is styled using Bootstrap classes for responsiveness and includes clear visual cues for active pages.
+  The navbar is styled using Bootstrap classes for responsiveness and includes clear visual cues for active pages.
 
 - Accessibility & UX:
-Mobile-friendly with a collapsible menu (navbar-toggler) and ARIA attributes for better screen reader support.
+  Mobile-friendly with a collapsible menu (navbar-toggler) and ARIA attributes for better screen reader support.
 
 <details>
   <summary>Navbar</summary>
 
 ![Index results](readme-docs/navbar.png)
+
+  </details>
+
+<details>
+  <summary>Navbar admin</summary>
+
+![Index results](readme-docs/navbar_admin.png)
+
+  </details>
+
+<details>
+  <summary>Navbar user</summary>
+
+![Index results](readme-docs/navbar_admin.png)
+
   </details>
 
 ---
@@ -73,18 +87,19 @@ Mobile-friendly with a collapsible menu (navbar-toggler) and ARIA attributes for
 A consistent footer is displayed across all views with the following features:
 
 - Minimal Design:
-A simple, fixed (or sticky) footer that displays copyright.
+  A simple, fixed (or sticky) footer that displays copyright.
 
 - Dynamic Year:
-Uses Django’s template tags or context processors to render the current year automatically.
+  Uses Django’s template tags or context processors to render the current year automatically.
 
 - Attribution & Branding (optional):
-You may include site name, developer credit, or links to external documentation (e.g., GitHub repo, API info).
+  You may include site name, developer credit, or links to external documentation (e.g., GitHub repo, API info).
 
 <details>
   <summary>Footer</summary>
 
 ![Index results](readme-docs/footer.png)
+
   </details>
 
 ---
@@ -103,25 +118,28 @@ The home page is accessible to all users, including those not logged in. It prov
   <summary>Home Page</summary>
 
 ![Index results](readme-docs/home_page.png)
+
   </details>
 
 <details>
   <summary>Home Page User</summary>
 
 ![Index results](readme-docs/home_page_user.png)
+
   </details>
 
 <details>
   <summary>Home Page Admin</summary>
 
 ![Index results](readme-docs/home_page_admin.png)
+
   </details>
 
 ---
 
 ## 👤 User Management
 
-### Registration & Signup  
+### Registration & Signup
 
 New users register with a comprehensive signup form extending Django Allauth’s default signup by requiring first name, last name, gender, age, and country of residence. Gender is selected from predefined choices: Male, Female, or Other. Country selection leverages the `django-countries` package, presenting a dropdown list of countries for standardized input. Age is entered as a positive integer. These fields are saved in an associated `UserProfile` model linked to the user account.
 
@@ -129,24 +147,29 @@ New users register with a comprehensive signup form extending Django Allauth’s
   <summary>Signup</summary>
 
 ![Index results](readme-docs/signup_page.png)
+
   </details>
 
-### Login  
+### Login
+
 Users log in using their email and password credentials. Validation ensures secure authentication with appropriate error feedback.
 
 <details>
   <summary>Login</summary>
 
 ![Index results](readme-docs/signin_page.png)
+
   </details>
 
-### Logout  
+### Logout
+
 Authenticated users can securely log out via the navigation bar. When clicked, a confirmation prompt ensures the user truly intends to sign out, helping to prevent accidental logouts. Upon confirmation, the session ends and the user is redirected to the homepage,
 
 <details>
   <summary>Logout</summary>
 
 ![Index results](readme-docs/signout_page.png)
+
   </details>
 
 ---
@@ -159,18 +182,21 @@ The Medication List page serves as the central hub where users can view all medi
   <summary>Medication user</summary>
 
 ![Index results](readme-docs/medication_user.png)
+
   </details>
 
 <details>
   <summary>Medication admin</summary>
 
 ![Index results](readme-docs/medication_admin.png)
+
   </details>
 
 <details>
   <summary>Medication pagination</summary>
 
 ![Index results](readme-docs/medication_pagination.png)
+
   </details>
 
 ### 💊 Create, update and delete medications
@@ -181,6 +207,7 @@ The Medication List page serves as the central hub where users can view all medi
   <summary>Add Medication</summary>
 
 ![Index results](readme-docs/add_medication.png)
+
   </details>
 
 ---
@@ -197,11 +224,11 @@ The Medication List page serves as the central hub where users can view all medi
 
 - Medication data includes:
 
-    - Name, Dosage, Frequency, Start/End Date, Category (dropdown), and optional Notes.
+  - Name, Dosage, Frequency, Start/End Date, Category (dropdown), and optional Notes.
 
 - Uses custom-styled form widgets (Bootstrap) for a clean UI.
 
-### ⚠️  Reporting of side effects per medication
+### ⚠️ Reporting of side effects per medication
 
 User are able to log any side effects they experience for specific medication so that they can track how treatments affect them. Users are able categorize side effects from a predefined list to ensure consistency and ensure that reporting is made easier.
 
@@ -211,11 +238,11 @@ User are able to log any side effects they experience for specific medication so
 
 - Each side effect is:
 
-    - Linked to a specific medication.
+  - Linked to a specific medication.
 
-    - Categorized via dropdown (SIDE_EFFECT_CATEGORIES): Nausea or Vomiting, Fatigue or Weakness, Rashes or Skin Issues, Mood Changes, Muscle or Joint Pain, Heart Palpitations or Chest Pain.
+  - Categorized via dropdown (SIDE_EFFECT_CATEGORIES): Nausea or Vomiting, Fatigue or Weakness, Rashes or Skin Issues, Mood Changes, Muscle or Joint Pain, Heart Palpitations or Chest Pain.
 
-    - Users provide detailed textual descriptions explaining their symptoms or experiences.
+  - Users provide detailed textual descriptions explaining their symptoms or experiences.
 
 - Reported side effects are stored with timestamps (reported_on) and associated with the reporting user.
 
@@ -227,11 +254,11 @@ User are able to log any side effects they experience for specific medication so
 
 - MedicationList displays:
 
-    - User’s medications (or all for superusers).
+  - User’s medications (or all for superusers).
 
-    - Paginated with 6 items per page.
+  - Paginated with 6 items per page.
 
-    - Includes sorting by name, user (admin only), and date created.
+  - Includes sorting by name, user (admin only), and date created.
 
 - Side effects are grouped and displayed under each medication using a dictionary (side_effects_by_med).
 
@@ -257,20 +284,22 @@ User are able to log any side effects they experience for specific medication so
 
 - Dashboard displays:
 
-    - Total number of medications and side effects. The dashboard displays overall counts of medications and side effects recorded.
+  - Total number of medications and side effects. The dashboard displays overall counts of medications and side effects recorded.
 
-    - Top medication and side effects categories (global and by gender). Data is grouped by health categories for medications and side effect categories, showing the most common entries.
+  - Top medication and side effects categories (global and by gender). Data is grouped by health categories for medications and side effect categories, showing the most common entries.
 
 <details>
   <summary>Admin Dashboard Medications</summary>
 
 ![Index results](readme-docs/medication_pie_chart.png)
+
   </details>
 
 <details>
   <summary>Admin Dashboard Sideffect</summary>
 
 ![Index results](readme-docs/sideeffect_pie_chart.png)
+
   </details>
 
 - Uses raw SQL queries for performance and flexibility. The app uses optimized raw SQL queries to aggregate data efficiently, joining medication and side effect records with user profiles.
@@ -281,12 +310,14 @@ User are able to log any side effects they experience for specific medication so
   <summary>Admin Dashboard Filter</summary>
 
 ![Index results](readme-docs/medication_pie_chart_female.png)
+
   </details>
 
 <details>
   <summary>Admin Dashboard Filter</summary>
 
 ![Index results](readme-docs/sideeffect_pie_chart_female.png)
+
   </details>
 
 ---
@@ -370,6 +401,7 @@ This rich, dynamic dashboard supports better monitoring and informed decision-ma
 - **Models:** The `Medication` model stores medication details, user linkage, and category selections. The `SideEffect` model links side effects to medications and users, with categorized types and descriptions. User demographic data is stored separately in a `UserProfile` model extending Django’s default User.
 
 - **Forms:** Custom forms leverage Django’s forms framework with styled widgets for consistent UI:
+
   - `CustomSignupForm` extends Django Allauth signup, adding fields for first name, last name, gender (dropdown), age, and country (using django-countries).
   - `MedicationForm` handles medication data entry with input validation and dropdowns for categories.
   - `SideEffectForm` manages side effect reporting, with dropdown selection and a textarea for detailed descriptions.
@@ -381,9 +413,11 @@ This rich, dynamic dashboard supports better monitoring and informed decision-ma
 ---
 
 ## 🎨 Project Design
+
 This project combines clean visual design with full CRUD functionality to ensure an intuitive and user-friendly experience.
 
 ### 🛠 CRUD Functionality
+
 The system is designed around standard Create, Read, Update, and Delete (CRUD) operations:
 
 - Users can create and manage medications and report side effects.
@@ -393,11 +427,13 @@ The system is designed around standard Create, Read, Update, and Delete (CRUD) o
 - Items can be updated or deleted directly from the interface, with appropriate permission checks to ensure data integrity.
 
 ### 🌈 Color Scheme
+
 - A minimal and accessible color palette is used, prioritizing readability and contrast.
 
 - Bootstrap's default theme is extended with subtle custom styling for buttons, alerts, and form elements.
 
 ### 🔤 Typography
+
 - The project uses Bootstrap’s base typography, which provides clean, responsive, and legible text styling across all devices.
 
 - Headings and body text are clearly distinguished, with consistent font sizes and weights.
@@ -405,6 +441,7 @@ The system is designed around standard Create, Read, Update, and Delete (CRUD) o
 - Placeholders and form hints use smaller, muted text for subtle guidance without clutter.
 
 ### 🖼 Layout & Responsiveness
+
 - The layout is mobile-first and fully responsive, built using Bootstrap’s grid system.
 
 - Forms and lists resize smoothly across screen sizes — from phones to desktops.
@@ -412,6 +449,7 @@ The system is designed around standard Create, Read, Update, and Delete (CRUD) o
 - Navigation and tables adapt gracefully to small screens, maintaining usability.
 
 ### 🧭 UI Components
+
 Common UI patterns are used to improve familiarity, including:
 
 - A sticky navbar.
@@ -432,24 +470,52 @@ Wireframes were created in Uiwizard. They were used for initial planning of temp
 <summary>Index Wireframe</summary>
 
 ![Index Wireframe](readme-docs/wireframe/index_page.png)
+
 </details>
 
 <details>
 <summary>Medication Wireframe</summary>
 
 ![Medication Wireframe](readme-docs/wireframe/medication_page.png)
+
 </details>
 
 <details>
 <summary>Admin Dashboard Wireframe</summary>
 
 ![Admin Dashboard Wireframe](readme-docs/wireframe/admin_dashboard.png)
+
 </details>
 
 <details>
 <summary>Registration Page Wireframe</summary>
 
 ![Registration page Wireframe](readme-docs/wireframe/register_page.png)
+
+</details>
+
+---
+
+## Agile Methodology
+
+[GitHub Projects Page](https://github.com/users/aaronalonsotorrens/projects/4)
+
+GitHub Projects was used in part for the planning of this website to create and track User Stories as they were implemented and fulfilled.
+
+<details>
+<summary>Agile plan document</summary>
+
+![Agile plan document](readme-docs/agile_document_1.png)
+![Agile plan document](readme-docs/agile_document_2.png)
+
+</details>
+
+<details>
+<summary>Github document</summary>
+
+![Agile plan document](readme-docs/github_user_story_plan_1.png)
+![Agile plan document](readme-docs/github_user_story_plan_2.png)
+
 </details>
 
 ---
@@ -464,18 +530,21 @@ HTML was validated by copying the page source and pasting into the validator.
 <summary>Index Results</summary>
 
 ![Index results](readme-docs/testing/index_page_html_validation.png)
+
 </details>
 
 <details>
 <summary>Add Medication Results</summary>
 
 ![Index results](readme-docs/testing/add_medication_html_validation.png)
+
 </details>
 
 <details>
 <summary>View Medication Results</summary>
 
 ![Index results](readme-docs/testing/view_medication_html_validation.png)
+
 </details>
 
 <details>
@@ -483,6 +552,7 @@ HTML was validated by copying the page source and pasting into the validator.
 There were 4 warnings related to CountryField django package.
 
 ![Index results](readme-docs/testing/signup_html_validation.png)
+
 </details>
 
 ## [CSS Validator](https://jigsaw.w3.org/css-validator/)
@@ -495,92 +565,99 @@ To further support the project’s CSS requirements, a small amount of custom st
 <summary>CSS validations for forms.css</summary>
 
 ![Index results](readme-docs/testing/form_css_validation.png)
+
 </details>
 
 <details>
 <summary>Results for style.css attached outside this project</summary>
 
 ![Index results](readme-docs/testing/css_validation.png)
+
 </details>
 
 ## JavaScript Testing
 
-JSHint was used for validating the JavaScript for the modals and email. 
+JSHint was used for validating the JavaScript.
 
 <details>
 <summary>Script js testing</summary>
 
 ![Index results](readme-docs/testing/jsscript_jshint.png)
+
 </details>
 
-## 🧠 Models Overview
+## Python Testing
 
-### Medication
-```python
-class Medication(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='medications')
-    name = models.CharField(max_length=100)
-    dosage = models.CharField(max_length=50)
-    frequency = models.IntegerField()
-    start_date = models.DateField()
-    end_date = models.DateField()
-    category = models.CharField(choices=HEALTH_CATEGORIES)
-    ...
-```
+The project was tested for pep8 compliance using pycodestyle. [autopep8](https://pypi.org/project/autopep8/) was used to aid compliance. At time of writing no problems or errors were found.
 
-### SideEffect
-```python
-class SideEffect(models.Model):
-    medication = models.ForeignKey(Medication, on_delete=models.CASCADE, related_name='side_effects')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.CharField(choices=SIDE_EFFECT_CATEGORIES)
-    description = models.TextField()
-    reported_on = models.DateTimeField(auto_now_add=True)
-```
+## Lighthouse
 
----
+The site was tested using Lighthouse in Chrome DevTools to check performance, accessibiltiy, best practices and SEO. The final testing on Lighthouse was run on incognito mode. The results are below.
 
-## 📊 Admin Dashboard (Superusers Only)
+<details>
+<summary>Home page results</summary>
 
-### View (`views.py`)
-```python
-def dashboard(request):
-    if not request.user.is_superuser:
-        return redirect('home')
+![Index results](readme-docs/lighthouse/home_page_lighthouse.png)
 
-    total_medications = Medication.objects.count()
-    total_side_effects = SideEffect.objects.count()
-    most_common_side_effects = SideEffect.objects.values('category')         .annotate(count=models.Count('category'))         .order_by('-count')[:5]
+</details>
 
-    return render(request, 'medication_tracker/dashboard.html', {
-        'total_medications': total_medications,
-        'total_side_effects': total_side_effects,
-        'most_common_side_effects': most_common_side_effects,
-    })
-```
+<details>
+<summary>Medications admin results</summary>
 
-### Template (`dashboard.html`)
-```html
-<canvas id="sideEffectChart"></canvas>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    const sideEffectData = {
-        labels: [{% for effect in most_common_side_effects %}'{{ effect.category }}'{% if not forloop.last %},{% endif %}{% endfor %}],
-        datasets: [{
-            label: 'Side Effects Count',
-            data: [{% for effect in most_common_side_effects %}{{ effect.count }}{% if not forloop.last %},{% endif %}{% endfor %}],
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1
-        }]
-    };
-    new Chart(document.getElementById('sideEffectChart'), {
-        type: 'bar',
-        data: sideEffectData,
-        options: { scales: { y: { beginAtZero: true } } }
-    });
-</script>
-```
+![Index results](readme-docs/lighthouse/medication_admin_lighthouse.png)
+
+</details>
+
+<details>
+<summary>Medications user results</summary>
+
+![Index results](readme-docs/lighthouse/medication_user_lighthouse.png)
+
+</details>
+
+<details>
+<summary>Add medication results</summary>
+
+![Index results](readme-docs/lighthouse/add_medication_lighthouse.png)
+
+</details>
+
+<details>
+<summary>Signin Results</summary>
+
+![Index results](readme-docs/lighthouse/signin_lighthouse.png)
+
+</details>
+
+<details>
+<summary>Signout Results</summary>
+
+![Index results](readme-docs/lighthouse/signout_lighthouse.png)
+
+</details>
+
+<details>
+<summary>Signup Results</summary>
+
+![Index results](readme-docs/lighthouse/signup_lighthouse.png)
+
+</details>
+
+## Manual Testing
+
+Below the steps for manual testing of the site have been arranged into tables.
+
+<details>
+<summary>Manual testing</summary>
+
+![Testing Registration & Login](readme-docs/testing/manual_testing.png)
+</details>
+
+<details>
+<summary>User story testing</summary>
+
+![Testing Registration & Login](readme-docs/testing/user_story_testing.png)
+</details>
 
 ---
 
@@ -600,5 +677,3 @@ def dashboard(request):
 - Integrate advanced filtering or user-level analytics
 
 ---
-
-
