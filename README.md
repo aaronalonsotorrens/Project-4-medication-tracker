@@ -78,7 +78,7 @@ The application features a responsive and role-aware navigation bar present acro
 <details>
   <summary>Navbar user</summary>
 
-![Index results](readme-docs/navbar_admin.png)
+![Index results](readme-docs/navbar_user.png)
 
   </details>
 
@@ -201,7 +201,7 @@ The Medication List page serves as the central hub where users can view all medi
 
   </details>
 
-### 💊 Create, update and delete medications
+## 💊 Create, update and delete medications
 
 - **Add Medication!** Users manage their medications through a user-friendly interface. Users add medications by filling a form with fields for medication name, dosage (e.g., “500mg”), frequency (times per day), start and end dates, and selecting a health category from a dropdown list. Categories include Joints and Muscles, Gut Health, Skin, Eyes-Ears-Nose-Throat, Headaches and Dizziness, and Heart Health, ensuring consistent classification of medication purposes. They are able to record, edit, or remove medications they are taking to keep track of treatment accurately.
 
@@ -211,8 +211,6 @@ The Medication List page serves as the central hub where users can view all medi
 ![Index results](readme-docs/add_medication.png)
 
   </details>
-
----
 
 - **Edit & Delete:** Users can update or remove medications they previously added. Forms are pre-populated with current data for ease of editing. Deletions prompt confirmation to prevent accidental loss.
 
@@ -232,7 +230,21 @@ The Medication List page serves as the central hub where users can view all medi
 
 ### ⚠️ Reporting of side effects per medication
 
-User are able to log any side effects they experience for specific medication so that they can track how treatments affect them. Users are able categorize side effects from a predefined list to ensure consistency and ensure that reporting is made easier.
+As seen in the previous screenshots users are able to log any side effects they experience for specific medication so that they can track how treatments affect them. Users are able categorize side effects from a predefined list to ensure consistency and ensure that reporting is made easier.
+
+<details>
+  <summary>Report side effect</summary>
+
+![Index results](readme-docs/side_effects_page.png)
+
+  </details>
+
+<details>
+  <summary>Visual of reported side effect</summary>
+
+![Index results](readme-docs/reported_side_effetcs.png)
+
+  </details>
 
 #### Features
 
@@ -816,12 +828,16 @@ I would like to express my gratitude to the following for their support and reso
 - **[Stack Overflow](https://stackoverflow.com/)** – For being an essential resource in resolving issues and exploring best practices.
 - **[W3Schools](https://www.w3schools.com/)** and **[MDN Web Docs](https://developer.mozilla.org/)** – For reliable explanations of HTML, CSS, and JavaScript concepts.
 - **[Font Awesome](https://fontawesome.com/)** – For icon assets that enhanced the visual design and usability.
+- **[Chatgpt](https://chatgpt.com/)** – Support with troubleshooting code and project planning.
+- **[Github project](https://github.com/SJECollins/ci-pp4-pet-rx)** Very helpful with project structure and organisation.
 
 A special thank you to my mentor Brian Macharia for their constructive feedback and encouragement.
 
-- * Google Sheets - Project draft
+### Additional documentation
+
+- * Project draft
   * [Google Sheet](https://docs.google.com/spreadsheets/d/1_4eTeUY9SJVy2AsdiYDelQeH30RATD8YRc7OqEIjHqw/edit?usp=sharing)
-- * Google Sheets - Project manual testing
+- * Project manual testing
   * [Google Sheet](https://docs.google.com/spreadsheets/d/1sESh-80ziwv5ejT-GULQ0venPfS0Z_QnpMplK91KGkw/edit?usp=sharing)
 
 ---
