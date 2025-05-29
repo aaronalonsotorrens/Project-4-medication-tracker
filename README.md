@@ -14,6 +14,8 @@ This project is ideal for individuals seeking a straightforward, user-friendly t
 
 ![Medtracker](readme-docs/website_image.png)
 
+The live site can be found here: [Medtracker](https://project-4-medication-tracker-4f233b3643e7.herokuapp.com/)
+
 ---
 
 ## 👤 User Stories
