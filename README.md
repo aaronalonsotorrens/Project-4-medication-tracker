@@ -242,7 +242,7 @@ As seen in the previous screenshots users are able to log any side effects they 
 <details>
   <summary>Visual of reported side effect</summary>
 
-![Index results](readme-docs/reported_side_effetcs.png)
+![Index results](readme-docs/reported_side_effects.png)
 
   </details>
 
@@ -316,21 +316,23 @@ As seen in the previous screenshots users are able to log any side effects they 
 
   </details>
 
-- Uses raw SQL queries for performance and flexibility. The app uses optimized raw SQL queries to aggregate data efficiently, joining medication and side effect records with user profiles.
-
 - Admins are capable to analyze medication and side effect trends based on users' genders to understand how experiences vary. Data is grouped by Male, Female or Other. The visual grouping structure is prepared (gender_medication_data, gender_side_effect_data) and includes an “All” group for comparison across entire dataset.
 
-<details>
-  <summary>Admin Dashboard Filter</summary>
+- The graphs uses raw SQL queries for performance and flexibility. While I understand Django’s ORM is powerful and simplifies most database interactions, I chose to use raw SQL in parts of this project particularly in the admin dashboard. This wasn’t just for performance and flexibility, but because in this project I wanted to highlight my ability to write and work with SQL directly.
 
-![Index results](readme-docs/medication_pie_chart_female.png)
+While I understand that it would’ve been easier to do everything using the ORM, I think including raw SQL allowed me to handle more complex queries and aggregations efficiently, like joining user profiles with medications and side effects based on gender. This was a great opportunity to demonstrate that I’m comfortable stepping outside the ORM when needed and understand what’s going on.
+
+<details>
+  <summary>Admin Dashboard Filter for medications</summary>
+
+![Index results](readme-docs/medication_pie_chart_female_filter.png)
 
   </details>
 
 <details>
-  <summary>Admin Dashboard Filter</summary>
+  <summary>Admin Dashboard Filter for side effects</summary>
 
-![Index results](readme-docs/sideeffect_pie_chart_female.png)
+![Index results](readme-docs/sideeffect_pie_chart_female_filter.png)
 
   </details>
 
@@ -340,13 +342,13 @@ As seen in the previous screenshots users are able to log any side effects they 
 
 Only authenticated users can:
 
-    View the medication list.
+    View their own medication list.
 
     Add, update, or delete medications and side effects.
 
 Only superusers/admins can:
 
-    View and sort by username.
+    View all medications from all users and sort by username. date or medication.
 
     Access the admin dashboard.
 
@@ -521,6 +523,7 @@ GitHub Projects was used in part for the planning of this website to create and 
 - [Heroku](https://www.heroku.com/) – Deployment platform.
 - [Google Fonts](https://fonts.google.com/) – For custom fonts.
 - [Font Awesome](https://fontawesome.com/) – Icon set used in UI.
+- [Uiwizard](https://uizard.io/) – To create the wireframes for the project.
 
 ---
 
@@ -531,7 +534,7 @@ GitHub Projects was used in part for the planning of this website to create and 
 HTML was validated by copying the page source and pasting into the validator.
 
 <details>
-<summary>Index Results</summary>
+<summary>Home Page Results</summary>
 
 ![Index results](readme-docs/testing/index_page_html_validation.png)
 
@@ -552,10 +555,31 @@ HTML was validated by copying the page source and pasting into the validator.
 </details>
 
 <details>
-<summary>Signup Results</summary>
-There were 4 warnings related to CountryField django package.
+<summary>Dashboard Results</summary>
 
-![Index results](readme-docs/testing/signup_html_validation.png)
+![Index results](readme-docs/testing/dashboard_html_validator.png)
+
+</details>
+
+<details>
+<summary>Signup Results</summary>
+There were 4 warnings related to CountryField django package. Nothing else shows errors.
+
+![Index results](readme-docs/testing/signup_html_validator.png)
+
+</details>
+
+<details>
+<summary>Signin Results</summary>
+
+![Index results](readme-docs/testing/signin_html_validation.png)
+
+</details>
+
+<details>
+<summary>Signout Results</summary>
+
+![Index results](readme-docs/testing/signout_html_validator.png)
 
 </details>
 
@@ -563,21 +587,14 @@ There were 4 warnings related to CountryField django package.
 
 ## [CSS Validator](https://jigsaw.w3.org/css-validator/)
 
-The CSS for this project was validated using a standard CSS validator, which reported no errors. While the site’s appearance is largely shaped by Bootstrap’s responsive utility classes and Django’s built-in features, a standalone CSS file was included to replicate the existing layout. This was added in part due to uncertainty around the expected level of custom CSS, and to demonstrate my ability to maintain consistent, structured styling where required. That said, the extensive use of Bootstrap and Django utilities enabled the creation of a clean, functional, and visually distinctive interface with minimal reliance on traditional CSS, something I was genuinely excited to explore in this project. Making the most of Bootstrap allowed for a modern, streamlined layout, reducing redundant styling while achieving a user experience that feels both personal and polished.
+The overall look and feel of the site is driven primarily by Bootstrap’s responsive utility classes and Django’s built-in features. Leveraging Bootstrap allowed for a modern, streamlined layout that minimized the need for redundant styling while still delivering a clean, polished, personal and user-friendly interface, something I really enjoyed working on.
 
-To further support the project’s CSS requirements, a small amount of custom styling was applied specifically to the forms.html template. This stylesheet was also validated with zero errors and helped ensure that key presentation elements were met without compromising the project’s overall design approach.
+In contrast, the forms.html template includes custom CSS styling via a separate stylesheet, which was validated with zero errors. This allowed for more precise control over specific layout and design elements where needed.
 
 <details>
 <summary>CSS validations for forms.css</summary>
 
 ![Index results](readme-docs/testing/form_css_validation.png)
-
-</details>
-
-<details>
-<summary>Results for style.css attached outside this project</summary>
-
-![Index results](readme-docs/testing/css_validation.png)
 
 </details>
 
@@ -682,6 +699,8 @@ This project includes automated tests for the medications app, ensuring key comp
         - Checks the correct template is used to render the medication list page.
 
         - Verifies user login is required (via test setup with logged-in user).
+
+If I had more time, I would have extended automated testing to cover the remaining Python files and views across the project. Expanding test coverage was planned to further ensure robustness and maintainability.
 
 <details>
 <summary>Automated testing with coverage reports</summary>
@@ -835,9 +854,9 @@ A special thank you to my mentor Brian Macharia for their constructive feedback 
 
 ### Additional documentation
 
-- * Project draft
+* Project draft
   * [Google Sheet](https://docs.google.com/spreadsheets/d/1_4eTeUY9SJVy2AsdiYDelQeH30RATD8YRc7OqEIjHqw/edit?usp=sharing)
-- * Project manual testing
+* Project manual testing
   * [Google Sheet](https://docs.google.com/spreadsheets/d/1sESh-80ziwv5ejT-GULQ0venPfS0Z_QnpMplK91KGkw/edit?usp=sharing)
 
 ---
