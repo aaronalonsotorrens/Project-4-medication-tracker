@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db import connection
 
+
 def home_page_view(request):
     return render(request, 'medications/index.html')
 
@@ -22,8 +23,10 @@ class MedicationList(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         # Admins see all, others see only their meds
-        queryset = Medication.objects.all() if self.request.user.is_superuser else Medication.objects.filter(user=self.request.user)
-        queryset = queryset.select_related('user').prefetch_related('side_effects')  # Improve query efficiency
+        queryset = Medication.objects.all(
+        ) if self.request.user.is_superuser else Medication.objects.filter(user=self.request.user)
+        queryset = queryset.select_related('user').prefetch_related(
+            'side_effects')  # Improve query efficiency
 
         # Sorting logic
         sort_by = self.request.GET.get('sort_by')
@@ -62,7 +65,8 @@ def add_side_effect(request, medication_id):
             side_effect.save()
             messages.success(request, "✅ Side effect reported successfully.")
         else:
-            messages.error(request, "There was an error reporting the side effect.")
+            messages.error(
+                request, "There was an error reporting the side effect.")
     return redirect('medication_list')
 
 

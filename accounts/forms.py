@@ -8,7 +8,8 @@ from django_countries.widgets import CountrySelectWidget
 class CustomSignupForm(SignupForm):
     first_name = forms.CharField(max_length=30, label='First Name')
     last_name = forms.CharField(max_length=30, label='Last Name')
-    gender = forms.ChoiceField(choices=UserProfile.GENDER_CHOICES, label='Gender')
+    gender = forms.ChoiceField(
+        choices=UserProfile.GENDER_CHOICES, label='Gender')
     age = forms.IntegerField(min_value=0, label='Age')
     country = CountryField(blank_label='(select country)').formfield(
         widget=CountrySelectWidget(layout='{widget}'),  # Removes flag
