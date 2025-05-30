@@ -113,7 +113,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeinstitute-ide.net/",
-    "https://*.herokuapp.com",
+    "https://project-4-medication-tracker.herokuapp.com",
     "http://localhost:8000",
     "http://127.0.0.1:8000"
 ]
