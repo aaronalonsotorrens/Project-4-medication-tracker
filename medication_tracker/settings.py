@@ -44,7 +44,7 @@ else:
 # Security
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = False
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', 'localhost',]
+ALLOWED_HOSTS = ['project-4-medication-tracker.herokuapp.com', '127.0.0.1', 'localhost',]
 
 # Installed apps
 INSTALLED_APPS = [
