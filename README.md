@@ -1,16 +1,16 @@
 # 💊 Django Medication Tracker
 
-Medication Tracker is a web app designed to help users manage and track their personal medication schedules with ease and reliability.
+Medication Tracker is a full-stack web application designed to help users efficiently manage and monitor their personal medication schedules with ease, reliability, and privacy. The application provides a secure and user-friendly platform for individuals seeking to stay on top of their medication routines and health management.
 
-Unregistered users can access the homepage to learn more about the purpose of the app and its features. To begin using the app, users must register an account via the sign-up form. Once registered, users can securely log in to access the full functionality of the tracker.
+Visitors to the site can explore the homepage to learn about the purpose of the app and its core features. To begin tracking their medications, users are required to register for an account through a secure sign-up process. Once registered, users can log in to access the full functionality of the app.
 
-Logged-in users can create new medication entries, browse a list of all their current medications, and update or delete existing entries as needed. Each medication record includes details such as name, dosage, frequency and the option to report side effects.
+Logged-in users are able to create new medication records, each containing key details such as name, dosage, and frequency. Users can also edit or delete existing entries, ensuring their medication list remains up to date. The platform includes the option to report side effects per medication and categorize both medications and side effects using dropdown fields for clarity and consistency. A responsive, paginated table allows users to easily browse and sort through their current medications.
 
-From their personalized dashboard, users have a clear view of all active medications and their status. The clean, responsive design ensures a smooth experience across devices, whether managing prescriptions at home or on the go.
+Admin users benefit from access to a dedicated dashboard that provides an overview of all submitted medications and side effects. The dashboard includes visual summaries of top categories, gender-based breakdowns, and total counts, and enables admins to manage user-generated data effectively. The admin panel, powered by Django, ensures secure and centralized data oversight.
 
-Medication data is securely stored and managed through the backend, built with Django. The admin panel allows site administrators to oversee all user activity, manage medications, and perform data maintenance tasks as needed.
+The site’s front end is built with Bootstrap 5, offering a clean and responsive design that performs well across devices. All application data is stored and managed using Django’s robust backend architecture, with role-based authentication and permissions to ensure users can only access and manage their own data.
 
-This project is ideal for individuals seeking a straightforward, user-friendly tool to support their health routine and medication adherence.
+Overall, Medication Tracker serves as a streamlined and personalized tool for users aiming to support their health routines and improve medication adherence in a secure digital environment.
 
 ![Medtracker](readme-docs/website_image.png)
 
@@ -735,6 +735,14 @@ Below the steps for manual testing of the site have been arranged into tables.
 
 ![Manual testing](readme-docs/testing/user_story_testing.png)
 </details>
+
+---
+
+## Browser Compatibility
+The website was tested on:
+- Chrome Version
+- Firefox Version 
+- Safari iOS 
 
 ---
 
