@@ -248,6 +248,7 @@ As seen in the previous screenshots users are able to log any side effects they 
 
   </details>
 
+
 #### Features
 
 - From the medication list page, users can report side effects using the SideEffectForm.
@@ -363,6 +364,38 @@ Permissions enforced via:
     @login_required
 
     @staff_member_required
+
+---
+
+## 📊 Data Model
+
+The Medication Tracker project includes the following main models:
+
+### User
+- Django's built-in user model.
+- Linked to UserProfile, Medication, and SideEffect.
+
+### UserProfile
+- One-to-one relationship with User.
+- Stores user-specific metadata like gender, age, and country.
+
+### Medication
+- ForeignKey to User.
+- Represents a specific medication with fields like name, dosage, frequency, etc.
+
+### SideEffect
+- ForeignKey to both Medication and User.
+- Represents side effects experienced while taking a medication.
+
+### Relationships Summary
+- One User ➝ One UserProfile
+- One User ➝ Many Medications
+- One Medication ➝ Many SideEffects
+- One User ➝ Many SideEffects
+
+### ERD (Entity Relationship Diagram)
+
+![Entity Relationship Diagram](readme-docs/erd_diagram.png)
 
 ---
 
