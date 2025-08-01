@@ -567,6 +567,7 @@ GitHub Projects was used in part for the planning of this website to create and 
 - [Google Fonts](https://fonts.google.com/) – For custom fonts.
 - [Font Awesome](https://fontawesome.com/) – Icon set used in UI.
 - [Uiwizard](https://uizard.io/) – To create the wireframes for the project.
+- [Dbdiagram](https://dbdiagram.io/) – To create an entity relationship diagram (ERD).
 
 ---
 
