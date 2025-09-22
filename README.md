@@ -390,7 +390,6 @@ The Medication Tracker project includes the following main models:
 ### Relationships Summary
 - One User ➝ One UserProfile
 - One User ➝ Many Medications
-- One Medication ➝ Many SideEffects
 - One User ➝ Many SideEffects
 
 ### ERD (Entity Relationship Diagram)
